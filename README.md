@@ -1,4 +1,4 @@
-# THIS IS GIT_PRACTICE BRANCH
+# THIS IS GIT_PRACTICE BRANCH AND READY TO MERGE
 # Sky Get Into Tech Course
 
 ## Final Project
