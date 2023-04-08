@@ -20,14 +20,16 @@ class DataProviderService:
     def get_all_unique_types(self):
         sql = "CALL GetType()"
         self.cursor.execute(sql)
-        types = self.cursor.fetchall()
+        types = self.cursor.fetchall()  # tuple of tuple elements containing row data
+        # the below will convert the tuple of tuples "types" onto a list of strings
         types_list = self._single_item_tuple_to_list_convertor(types)
         return types_list
 
     def get_all_unique_categories(self):
         sql = "CALL GetCategory()"
         self.cursor.execute(sql)
-        categories = self.cursor.fetchall()
+        categories = self.cursor.fetchall() # tuple of tuple elements containing row data
+        # the below will convert the tuple of tuples "category" onto a list of strings
         categories_list = self._single_item_tuple_to_list_convertor(categories)
         return categories_list
 
@@ -51,12 +53,14 @@ class DataProviderService:
         else:
             # Else block to execute when no errors are found within the try block
             sql = "CALL GetUrl(%s, %s)"
-            input_values = (type_name, category_name, )
+            input_values = (type_name, category_name, )  # tuple with the data to replace %s placeholders
             self.cursor.execute(sql, input_values)
-            urls = self.cursor.fetchall()
+            urls = self.cursor.fetchall()  # tuple of tuple elements containing row data
+            # the below will convert the tuple of tuples "urls" onto a list of strings
             urls_list = self._single_item_tuple_to_list_convertor(urls)
             return urls_list
 
+    #TODO: add code for setter functions using stored procedures in DDBB
     def set_type(self, type_name):
         pass
 
@@ -95,5 +99,5 @@ if __name__ == "__main__":
     print(MYSQL.get_all_unique_categories())
     print(MYSQL.get_url("sound", "instrumental"))
     # print(MYSQL.get_url("sound"))
-    # print(MYSQL.get_url("sounds", "instrumental"))
+    # print(MYSQL.get_url("flower", "instrumental"))
     # print(MYSQL.get_url("sound", "instrumentals"))
