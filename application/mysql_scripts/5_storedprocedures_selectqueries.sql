@@ -30,9 +30,21 @@ DELIMITER ;
 -- CALL GetCategory();
 
 
--- GetUrl will retrieve the URL to be used in the SRC of HTML given a type and category selected by users
+-- GetUrl will retrieve the URLs matching the type and category provided (unique values only)
+-- type_selection: string passed on with the user selection 
+-- category_selection: string passed on with the user selection 
+DELIMITER $$
+CREATE PROCEDURE GetUrl(IN type_selection VARCHAR(50), category_selection VARCHAR(100))
+BEGIN
+-- DICSTICT will ensure that only unique values are included in our column data
+	SELECT DISTINCT media_url
+    FROM vw_media
+    WHERE type_name=type_selection AND category_name=category_selection;
+	
+END$$
+DELIMITER ; 
 
-
-
+-- Uncomment to test
+-- CALL GetUrl('sound', 'instrumental');
 
 
