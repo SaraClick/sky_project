@@ -1,7 +1,7 @@
-# Connection of Python and MySQL database to retireve information
+# Connection of Python and MySQL database to retrieve information
 
 import pymysql
-# from passlib.hash import sha256_crypt
+from exceptions import MissingKeyData, ValueNotInDDBB
 
 
 class DataProviderService:
@@ -21,23 +21,41 @@ class DataProviderService:
         sql = "CALL GetType()"
         self.cursor.execute(sql)
         types = self.cursor.fetchall()
-        return types
+        types_list = self._single_item_tuple_to_list_convertor(types)
+        return types_list
 
     def get_all_unique_categories(self):
         sql = "CALL GetCategory()"
         self.cursor.execute(sql)
         categories = self.cursor.fetchall()
-        return categories
+        categories_list = self._single_item_tuple_to_list_convertor(categories)
+        return categories_list
 
     def get_url(self, type_name=None, category_name=None):
-        if type_name==None or category_name==None:
-            pass
+        try:
+            # Try block to check that we actually have provided the required info
+            self._check_provided_data(type_name, category_name)
+
+        except MissingKeyData as exc:
+            # Except to execute if the error is due to type or category not being provided
+            print(exc)
+            self.conn.rollback()
+            print("rolled back")
+
+        except Exception as exc:
+            # Except to execute for any other error than MissingKeyData
+            print(exc)
+            self.conn.rollback()
+            print("rolled back")
+
         else:
+            # Else block to execute when no errors are found within the try block
             sql = "CALL GetUrl(%s, %s)"
             input_values = (type_name, category_name, )
             self.cursor.execute(sql, input_values)
             urls = self.cursor.fetchall()
-        return urls
+            urls_list = self._single_item_tuple_to_list_convertor(urls)
+            return urls_list
 
     def set_type(self, type_name):
         pass
@@ -48,6 +66,27 @@ class DataProviderService:
     def set_media(self, title, url, type_id, source_id, category_id):
         pass
 
+    # HELPER FUNCTIONS: semi private methods to be used in this class methods
+    def _single_item_tuple_to_list_convertor(self, row_tuples):
+        """Given a tuple of single item tuples, returns a list with each element being the element within the single tuple element"""
+        items_list = []
+        for item in row_tuples:
+            items_list.append(item[0])
+        return items_list
+
+    # semi-private method used to check if all info for method get_url() is actually provided
+    def _check_provided_data(self, type_name, category_name):
+        if not type_name and not category_name:
+            raise MissingKeyData("Both type and category name user selection MUST be given")
+        elif not type_name:
+            raise MissingKeyData("Type name MUST be given")
+        elif not category_name:
+            raise MissingKeyData("Category name MUST be given")
+        elif type_name not in self.get_all_unique_types():
+            raise ValueNotInDDBB("Type name does not exist in the database")
+        elif category_name not in self.get_all_unique_categories():
+            raise ValueNotInDDBB("Category name does not exist in the database")
+
 
 # The below is for testing purposes only
 if __name__ == "__main__":
@@ -55,3 +94,6 @@ if __name__ == "__main__":
     print(MYSQL.get_all_unique_types())
     print(MYSQL.get_all_unique_categories())
     print(MYSQL.get_url("sound", "instrumental"))
+    # print(MYSQL.get_url("sound"))
+    # print(MYSQL.get_url("sounds", "instrumental"))
+    # print(MYSQL.get_url("sound", "instrumentals"))
