@@ -3,5 +3,7 @@ h1 {
 }
 
 body {
-  background-color:darkgreen;
+  background-image: url("/static/media/background/nightsky.jpg");
+  width: 100%;
 }
+
