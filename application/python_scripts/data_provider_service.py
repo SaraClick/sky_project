@@ -28,7 +28,7 @@ class DataProviderService:
     def get_all_unique_categories(self):
         sql = "CALL GetCategory()"
         self.cursor.execute(sql)
-        categories = self.cursor.fetchall() # tuple of tuple elements containing row data
+        categories = self.cursor.fetchall()  # tuple of tuple elements containing row data
         # the below will convert the tuple of tuples "category" onto a list of strings
         categories_list = self._single_item_tuple_to_list_convertor(categories)
         return categories_list
@@ -60,15 +60,73 @@ class DataProviderService:
             urls_list = self._single_item_tuple_to_list_convertor(urls)
             return urls_list
 
-    #TODO: add code for setter functions using stored procedures in DDBB
     def set_type(self, type_name):
-        pass
+        sql = "CALL InsertType(%s)"
+        input_values = (type_name,)  # tuple with the data to replace %s placeholders
+        try:
+            # code to add the new type on to the type_media table.
+            self.cursor.execute(sql, input_values)
+            self.conn.commit()
+        except Exception as exc:
+            print(exc)
+            self.conn.rollback()
+            print("rolled back")
+        # below code is to retrieve the latest type added on to the table, so it can be returned
+        sql_new_type_name = "select type_name from type_media order by type_id desc limit 1"
+        self.cursor.execute(sql_new_type_name)
+        new_type = self.cursor.fetchone()  # tuple of tuple elements containing row data
+        return new_type[0]
 
     def set_source(self, source_name):
-        pass
+        sql = "CALL InsertSource(%s)"
+        input_values = (source_name,)  # tuple with the data to replace %s placeholders
+        try:
+            # code to add the new source on to the source_media table.
+            self.cursor.execute(sql, input_values)
+            self.conn.commit()
+        except Exception as exc:
+            print(exc)
+            self.conn.rollback()
+            print("rolled back")
+        # below code is to retrieve the latest source added on to the table, so it can be returned
+        sql_new_source_name = "select source_name from source_media order by source_id desc limit 1"
+        self.cursor.execute(sql_new_source_name)
+        new_source = self.cursor.fetchone()  # tuple of tuple elements containing row data
+        return new_source[0]
+
+    def set_category(self, category_name):
+        sql = "CALL InsertCategory(%s)"
+        input_values = (category_name,)  # tuple with the data to replace %s placeholders
+        try:
+            # code to add the new category on to the category_media table.
+            self.cursor.execute(sql, input_values)
+            self.conn.commit()
+        except Exception as exc:
+            print(exc)
+            self.conn.rollback()
+            print("rolled back")
+        # below code is to retrieve the latest category added on to the table, so it can be returned
+        sql_new_category_name = "select category_name from category_media order by category_id desc limit 1"
+        self.cursor.execute(sql_new_category_name)
+        new_category = self.cursor.fetchone()  # tuple of tuple elements containing row data
+        return new_category[0]
 
     def set_media(self, title, url, type_id, source_id, category_id):
-        pass
+        sql = "CALL InsertMedia(%s, %s, %s, %s, %s)"
+        input_values = (title, url, type_id, source_id, category_id,)  # tuple with the data to replace %s placeholders
+        try:
+            # code to add the new media on to the media table.
+            self.cursor.execute(sql, input_values)
+            self.conn.commit()
+        except Exception as exc:
+            print(exc)
+            self.conn.rollback()
+            print("rolled back")
+        # below code is to retrieve the latest media added on to the table, so it can be returned
+        sql_new_media_title = "select media_title from media order by media_id desc limit 1"
+        self.cursor.execute(sql_new_media_title)
+        new_media = self.cursor.fetchone()  # tuple of tuple elements containing row data
+        return new_media[0]
 
     # HELPER FUNCTIONS: semi private methods to be used in this class methods
     def _single_item_tuple_to_list_convertor(self, row_tuples):
@@ -101,3 +159,9 @@ if __name__ == "__main__":
     # print(MYSQL.get_url("sound"))
     # print(MYSQL.get_url("flower", "instrumental"))
     # print(MYSQL.get_url("sound", "instrumentals"))
+    # print(MYSQL.set_type("test_type"))
+    # print(MYSQL.get_all_unique_types())
+    # print(MYSQL.set_source("test_source"))
+    # print(MYSQL.set_category("test_category"))
+    # print(MYSQL.get_all_unique_categories())
+    # print(MYSQL.set_media("test_media", "test_url", 1, 1, 3))
