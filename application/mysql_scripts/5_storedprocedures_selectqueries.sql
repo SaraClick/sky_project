@@ -6,7 +6,7 @@ USE fortywinks;
 DELIMITER $$
 CREATE PROCEDURE GetType()
 BEGIN
--- DICSTICT will ensure that only unique values are included in our column data
+-- DISTINCT will ensure that only unique values are included in our column data
 	SELECT DISTINCT type_name
     FROM type_media;
 END$$
@@ -20,7 +20,7 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE GetCategory()
 BEGIN
--- DICSTICT will ensure that only unique values are included in our column data
+-- DISTINCT will ensure that only unique values are included in our column data
 	SELECT DISTINCT category_name
     FROM category_media;
 END$$
@@ -36,7 +36,7 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE GetUrl(IN type_selection VARCHAR(50), category_selection VARCHAR(100))
 BEGIN
--- DICSTICT will ensure that only unique values are included in our column data
+-- DISTINCT will ensure that only unique values are included in our column data
 	SELECT DISTINCT media_url
     FROM vw_media
     WHERE type_name=type_selection AND category_name=category_selection;
