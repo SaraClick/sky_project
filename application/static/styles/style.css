@@ -2,24 +2,19 @@ h1 {
   color: brown;
 }
 
-body {
-<<<<<<< HEAD
-  background-color:darkgreen;
-}
-=======
+body{
   background-image: url("/static/media/background/nightsky.jpg");
   width: 100%;
   font-color: white;
   padding:;
 }
 
-<<<<<<< HEAD
 #navbar_brand {
     width: 50px;
 }
 
 
-footer{
+#footer_main_container{
    position: fixed;
    left: 0;
    right:0;
@@ -35,6 +30,3 @@ fa fa-facebook{
 position: right;
 right:0;
 }
-=======
->>>>>>> da7991a732ad24ddc65d43f1a596c5a05edee0d1
->>>>>>> 6d5745a339b90dcda38aea39b558b97464265603
