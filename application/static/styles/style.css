@@ -5,8 +5,6 @@ h1 {
 body{
   background-image: url("/static/media/background/nightsky.jpg");
   width: 100%;
-  font-color: white;
-  padding:;
 }
 
 #navbar_brand {
