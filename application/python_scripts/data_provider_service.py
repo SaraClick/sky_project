@@ -1,6 +1,8 @@
 # Connection of Python and MySQL database to retrieve information
 
 import pymysql
+import sys
+
 from application.python_scripts.exceptions import MissingKeyData, ValueNotInDDBB
 
 
@@ -12,9 +14,14 @@ class DataProviderService:
         host = 'localhost'
         port = 3306
         user = 'root'
-        password = 'password'
         database = 'FortyWinks'
-        self.conn = pymysql.connect(host=host, port=port, user=user, password=password, db=database)
+        password = ""
+        # At the beginning of the course, all MAC users installed MySQL with no password set however WINDOWS users
+        # set the password "password" for MySQL. The below if statement will check if the system is Windows/Mac,
+        # and if Windows set the password to password, otherwise an empty string is used
+        if sys.platform == 'win32':
+            password = 'password'
+        self.conn = pymysql.connect(host=host, port=port, user=user, db=database, password=password)
         self.cursor = self.conn.cursor()
 
     def get_all_unique_types(self):
