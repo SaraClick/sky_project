@@ -18,41 +18,48 @@ class DataProviderService:
         self.cursor = self.conn.cursor()
 
     def get_all_unique_types(self):
+        """Returns a list of strings. Each string is a type of media within our database."""
+        # The below sql string is the query that will run inside mySql. This will call the GetType stored procedure.
         sql = "CALL GetType()"
+        # The below is to execute the sql query
         self.cursor.execute(sql)
-        types = self.cursor.fetchall()  # tuple of tuple elements containing row data
-        # the below will convert the tuple of tuples "types" onto a list of strings
+        # fetchall() retrieves all rows of a query and returns a tuple of tuples
+        types = self.cursor.fetchall()
+        # the below will convert the tuple of tuples "types" into a list of strings
         types_list = self._single_item_tuple_to_list_convertor(types)
         return types_list
 
+    # same structure as get_all_unique_types(self) and refer above for comment breakdown.
+
     def get_all_unique_categories(self):
+        """Returns a list of strings. Each string is a category of media within our database."""
         sql = "CALL GetCategory()"
         self.cursor.execute(sql)
-        categories = self.cursor.fetchall()  # tuple of tuple elements containing row data
-        # the below will convert the tuple of tuples "category" onto a list of strings
+        categories = self.cursor.fetchall()
         categories_list = self._single_item_tuple_to_list_convertor(categories)
         return categories_list
 
     def get_url(self, type_name=None, category_name=None):
+        """Given a type and category name, it returns a list of Url strings matching the type and category."""
         try:
             # Try block to check that we actually have provided the required info
             self._check_provided_data(type_name, category_name)
 
         except MissingKeyData as exc:
-            # Except to execute if the error is due to type or category not being provided
+            # Except block to execute if the error is due to type or category not being provided
             print(exc)
             self.conn.rollback()
             print("rolled back")
 
         except Exception as exc:
-            # Except to execute for any other error than MissingKeyData
+            # Except block to execute for any  error other than MissingKeyData
             print(exc)
             self.conn.rollback()
             print("rolled back")
 
         else:
             # Else block to execute when no errors are found within the try block
-            sql = "CALL GetUrl(%s, %s)"
+            sql = "CALL GetUrl(%s, %s)"  # %s is a placeholder for input to be given
             input_values = (type_name, category_name, )  # tuple with the data to replace %s placeholders
             self.cursor.execute(sql, input_values)
             urls = self.cursor.fetchall()  # tuple of tuple elements containing row data
@@ -61,7 +68,10 @@ class DataProviderService:
             return urls_list
 
     def set_type(self, type_name):
-        sql = "CALL InsertType(%s)"
+        """Given a new type_name string, inserts the type_name into the database."""
+        # The below sql string is the query that will run inside mySql. This will call the GetType stored procedure.
+        sql = "CALL InsertType(%s)"  # %s is a placeholder for a parameter to be given
+        # The below is to execute the sql query
         input_values = (type_name,)  # tuple with the data to replace %s placeholders
         try:
             # code to add the new type on to the type_media table.
@@ -71,68 +81,70 @@ class DataProviderService:
             print(exc)
             self.conn.rollback()
             print("rolled back")
-        # below code is to retrieve the latest type added on to the table, so it can be returned
+        # below code is to retrieve the latest type added to the table, so it can be returned
         sql_new_type_name = "select type_name from type_media order by type_id desc limit 1"
         self.cursor.execute(sql_new_type_name)
         new_type = self.cursor.fetchone()  # tuple of tuple elements containing row data
         return new_type[0]
 
+    # same structure as set_type method, refer above for comment breakdown.
     def set_source(self, source_name):
+        """Given a new source_name string, inserts the source_name into the database."""
         sql = "CALL InsertSource(%s)"
-        input_values = (source_name,)  # tuple with the data to replace %s placeholders
+        input_values = (source_name,)
         try:
-            # code to add the new source on to the source_media table.
             self.cursor.execute(sql, input_values)
             self.conn.commit()
         except Exception as exc:
             print(exc)
             self.conn.rollback()
             print("rolled back")
-        # below code is to retrieve the latest source added on to the table, so it can be returned
         sql_new_source_name = "select source_name from source_media order by source_id desc limit 1"
         self.cursor.execute(sql_new_source_name)
-        new_source = self.cursor.fetchone()  # tuple of tuple elements containing row data
+        new_source = self.cursor.fetchone()
         return new_source[0]
 
+    # same structure as set_type method, refer above for comment breakdown.
     def set_category(self, category_name):
+        """Given a new category_name string, inserts the category_name into the database."""
         sql = "CALL InsertCategory(%s)"
-        input_values = (category_name,)  # tuple with the data to replace %s placeholders
+        input_values = (category_name,)
         try:
-            # code to add the new category on to the category_media table.
             self.cursor.execute(sql, input_values)
             self.conn.commit()
         except Exception as exc:
             print(exc)
             self.conn.rollback()
             print("rolled back")
-        # below code is to retrieve the latest category added on to the table, so it can be returned
         sql_new_category_name = "select category_name from category_media order by category_id desc limit 1"
         self.cursor.execute(sql_new_category_name)
-        new_category = self.cursor.fetchone()  # tuple of tuple elements containing row data
+        new_category = self.cursor.fetchone()
         return new_category[0]
 
+    # same structure as set_type method, refer above for comment breakdown.
     def set_media(self, title, url, type_id, source_id, category_id):
+        """Given a title, url, type_id, source_id, category_id string, inserts the media into the database."""
         sql = "CALL InsertMedia(%s, %s, %s, %s, %s)"
-        input_values = (title, url, type_id, source_id, category_id,)  # tuple with the data to replace %s placeholders
+        input_values = (title, url, type_id, source_id, category_id,)
         try:
-            # code to add the new media on to the media table.
             self.cursor.execute(sql, input_values)
             self.conn.commit()
         except Exception as exc:
             print(exc)
             self.conn.rollback()
             print("rolled back")
-        # below code is to retrieve the latest media added on to the table, so it can be returned
         sql_new_media_title = "select media_title from media order by media_id desc limit 1"
         self.cursor.execute(sql_new_media_title)
-        new_media = self.cursor.fetchone()  # tuple of tuple elements containing row data
+        new_media = self.cursor.fetchone()
         return new_media[0]
 
     # HELPER FUNCTIONS: semi private methods to be used in this class methods
     def _single_item_tuple_to_list_convertor(self, row_tuples):
-        """Given a tuple of single item tuples, returns a list with each element being the element within the single tuple element"""
+        """Given a tuple of single item tuples, returns a list with each being the first element of the individual tuples"""
         items_list = []
+        # looping through the tuple of tuples
         for item in row_tuples:
+            # appending the first element of each tuple into item_list
             items_list.append(item[0])
         return items_list
 
