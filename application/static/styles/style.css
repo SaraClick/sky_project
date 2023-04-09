@@ -5,8 +5,28 @@ h1 {
 body {
   background-image: url("/static/media/background/nightsky.jpg");
   width: 100%;
+  font-color: white;
+  padding:;
 }
 
-#navbar_icon {
-  width: 50px;
+#navbar_brand {
+    width: 50px;
+}
+
+
+footer{
+   position: fixed;
+   left: 0;
+   right:0;
+   bottom: 0;
+   width: 100%;
+   background-color: white;
+   color: white;
+   text-align: center;
+
+}
+
+fa fa-facebook{
+position: right;
+right:0;
 }
