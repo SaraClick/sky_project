@@ -5,12 +5,16 @@ h1 {
 body{
   background-image: url("/static/media/background/nightsky.jpg");
   width: 100%;
+  color: white;
 }
 
 #navbar_brand {
     width: 50px;
 }
 
+.navbar_main_container {
+    background-color: purple;
+}
 
 #footer_main_container{
    position: fixed;
