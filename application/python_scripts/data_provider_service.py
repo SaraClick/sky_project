@@ -13,15 +13,14 @@ class DataProviderService:
         port = 3306
         user = 'root'
         database = 'FortyWinks'
-        # The below if/else checks if the machine running the code is Windows or Mac.
-        # If windows, MySQL password set to "password" and connection includes a password key parameter
-        if sys.platform == 'win32':
-            password = 'password'
-            self.conn = pymysql.connect(host=host, port=port, user=user, db=database, password=password)
-        else:
-            # If the user is not Windows, it's MAC. MAC users do not have a set password for MySQL
-            # MySQL connection same as Windows but without password key parameter
-            self.conn = pymysql.connect(host=host, port=port, user=user, db=database)
+
+        # WINDOWS USERS: uncomment the 2 below lines
+        # password = 'password'
+        # self.conn = pymysql.connect(host=host, port=port, user=user, db=database,  password=password)
+
+        # MAC USERS: uncomment the below line
+        # self.conn = pymysql.connect(host=host, port=port, user=user, db=database)
+
         self.cursor = self.conn.cursor()
 
     def get_all_unique_types(self):

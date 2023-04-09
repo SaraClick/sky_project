@@ -2,5 +2,3 @@ Flask
 pymysql
 wtforms
 flask_wtf
-os
-sys
