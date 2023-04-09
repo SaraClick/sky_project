@@ -13,14 +13,9 @@ class DataProviderService:
         port = 3306
         user = 'root'
         database = 'FortyWinks'
-<<<<<<< HEAD
         password = 'password'
 
         self.conn = pymysql.connect(host=host, port=port, user=user, db=database,  password=password)
-=======
-        #  password = 'password'
-        self.conn = pymysql.connect(host=host, port=port, user=user, db=database)
->>>>>>> 9a00a8407a1edf8ac916e1cf3bf0047cf5b494d6
         self.cursor = self.conn.cursor()
 
     def get_all_unique_types(self):
