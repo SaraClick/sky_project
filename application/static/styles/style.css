@@ -3,5 +3,12 @@ h1 {
 }
 
 body {
+<<<<<<< HEAD
   background-color:darkgreen;
 }
+=======
+  background-image: url("/static/media/background/nightsky.jpg");
+  width: 100%;
+}
+
+>>>>>>> da7991a732ad24ddc65d43f1a596c5a05edee0d1
