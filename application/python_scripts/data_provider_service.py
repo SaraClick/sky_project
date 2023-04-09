@@ -1,7 +1,7 @@
 # Connection of Python and MySQL database to retrieve information
 
-import pymysql
-from application.python_scripts.exceptions import MissingKeyData, ValueNotInDDBB
+import pymysql, os, sys, MissingKeyData, ValueNotInDDBB
+from application.python_scripts.exceptions
 
 
 class DataProviderService:
@@ -13,9 +13,14 @@ class DataProviderService:
         port = 3306
         user = 'root'
         database = 'FortyWinks'
-        password = 'password'
 
-        self.conn = pymysql.connect(host=host, port=port, user=user, db=database,  password=password)
+        # WINDOWS USERS: uncomment the 2 below lines
+        # password = 'password'
+        # self.conn = pymysql.connect(host=host, port=port, user=user, db=database,  password=password)
+
+        # MAC USERS: uncomment the below line
+        # self.conn = pymysql.connect(host=host, port=port, user=user, db=database)
+
         self.cursor = self.conn.cursor()
 
     def get_all_unique_types(self):
