@@ -8,12 +8,17 @@ body{
   color: white;
 }
 
-#navbar_brand {
-    width: 50px;
+/*Sets the size of the image within the navbar*/
+#icon_navbar {
+    width: 45px;
 }
 
 .navbar_main_container {
     background-color: purple;
+}
+
+.navbar {
+--bs-navbar-padding-y: 0rem;
 }
 
 #footer_main_container{

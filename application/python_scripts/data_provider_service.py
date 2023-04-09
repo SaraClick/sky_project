@@ -14,11 +14,11 @@ class DataProviderService:
         user = 'root'
         database = 'FortyWinks'
 
-        # WINDOWS USERS: uncomment the below password and self.conn
+        # WINDOWS USERS: uncomment the 2 below lines
         # password = 'password'
-        # self.conn = pymysql.connect(host=host, port=port, user=user, db=database, password=password)
+        # self.conn = pymysql.connect(host=host, port=port, user=user, db=database,  password=password)
 
-        # MAC USERS: uncomment the below self.conn
+        # MAC USERS: uncomment the below line
         # self.conn = pymysql.connect(host=host, port=port, user=user, db=database)
 
         self.cursor = self.conn.cursor()
