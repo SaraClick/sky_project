@@ -1,7 +1,7 @@
 # Connection of Python and MySQL database to retrieve information
 
-import pymysql, os, sys, MissingKeyData, ValueNotInDDBB
-from application.python_scripts.exceptions
+import pymysql
+from application.python_scripts.exceptions import MissingKeyData, ValueNotInDDBB
 
 
 class DataProviderService:
