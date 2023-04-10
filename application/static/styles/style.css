@@ -1,10 +1,11 @@
 /* ======================================= GENERAL STYLES =======================================*/
 h1 {
-  color: brown;
+  font-family:  'Nova Round', cursive; 
+  color: #cab1bd;
 }
 
 body{
-  background-color: #021c3b;
+  background-color: #034854;
   width: 100%;
   color: white;
 }
@@ -18,36 +19,42 @@ body{
 }
 
 .navbar_main_container {
-    background-color: purple;
+  background-color: #99bec6;
 }
 
 .navbar {
 --bs-navbar-padding-y: 0rem;
+font-family: 'Nova Round', cursive; 
+/*font-style: italic;*/
+font-size:large;
 }
 
+.navbar-nav a { 
+  color: #034854;
+  font-weight:bolder;
+}
 
 
 /* ======================================= FOOTER STYLES =======================================*/
 #footer_main_container{
-   position: fixed;
-   left: 0;
-   right:0;
-   bottom: 0;
-   width: 100%;
-   background-color: white;
-   color: white;
-   text-align: center;
-
+  position: fixed;
+ /* left: 0;
+  right:0; */
+  bottom: 0;
+  width: 100%;
+  background-image: linear-gradient(360deg, #b0dee6, #148ca1, #096372, #034854);
+  font-family: 'Nova Round', cursive; 
+  color: #DAE6E7;
+  text-align: center;
 }
-
-fa fa-facebook{
-position: right;
-right:0;
-}
-
+/* Removed hyperlink format from media icons*/
 .footer_media_icon {
-    text-decoration: none;
-    color: black;
+   text-decoration: none;
+   color: #DAE6E7;
+}
+/* Added white space around copy right and icomns from borders of website*/
+footer {
+ padding: 5%;
 }
 
 /* ======================================= HOME PAGE STYLES =======================================*/
