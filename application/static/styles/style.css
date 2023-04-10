@@ -4,7 +4,7 @@ h1 {
 }
 
 body{
-  background-image: url("/static/media/background/nightsky.jpg");
+  background-color: #021c3b;
   width: 100%;
   color: white;
 }
@@ -45,6 +45,10 @@ position: right;
 right:0;
 }
 
+.footer_media_icon {
+    text-decoration: none;
+    color: black;
+}
 
 /* ======================================= HOME PAGE STYLES =======================================*/
 
