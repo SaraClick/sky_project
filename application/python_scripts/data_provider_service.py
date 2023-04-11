@@ -170,9 +170,9 @@ class DataProviderService:
 
     # Admin login
     def get_all_admins(self):
-        admin_username = input('Enter admin username: ')
+        admin_email = input('Enter admin email: ')
         admin_password = input('Enter admin password: ')
-        sql = f"SELECT * FROM admins WHERE admin_username = '{admin_username}' AND admin_password = '{admin_password}' AND admin_status = 'active'"
+        sql = f"SELECT * FROM admins WHERE admin_email = '{admin_email}' AND admin_password = '{admin_password}' AND admin_status = 'active'"
         self.cursor.execute(sql)
         result = self.cursor.fetchall()
 
