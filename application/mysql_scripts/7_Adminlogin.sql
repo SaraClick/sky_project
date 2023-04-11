@@ -4,7 +4,7 @@ use fortywinks;
 
 CREATE TABLE admins (
 admin_id INT AUTO_INCREMENT PRIMARY KEY,
-admin_username VARCHAR(50) NOT NULL, 
+admin_email VARCHAR(50) NOT NULL, 
 admin_password VARCHAR(50) NOT NULL,
 admin_status ENUM('active', 'inactive') NOT NULL
 );
