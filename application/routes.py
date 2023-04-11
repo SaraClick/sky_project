@@ -30,3 +30,8 @@ def content_selection():
 @app.route("/tips")
 def tips():
     return render_template("tips.html")
+
+
+@app.route("/admin_login")
+def admin_login():
+    return render_template("admin_login.html")
