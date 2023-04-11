@@ -1,6 +1,18 @@
 {% extends "layout.html" %}
 {% block main_content %}
 
-
+<div class="content_main_container">
+  <div class="content_container">
+    <div class="content_title">
+      <h2>Select Media Type</h2>
+    </div>
+    <div class="icon_selection_container">
+      <button type="submit" name="submit_type" value="sound" class="btn button_type"><img class="icon_type"
+          src="/static/media/icons/sound.png"></button>
+      <button type="submit" name="submit_type" value="video" class="btn button_type"><img class="icon_type"
+          src="/static/media/icons/video.png"></button>
+    </div>
+  </div>
+</div>
 
 {% endblock %}
