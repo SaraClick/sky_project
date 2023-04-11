@@ -168,6 +168,19 @@ class DataProviderService:
         elif category_name not in self.get_all_unique_categories():
             raise ValueNotInDDBB("Category name does not exist in the database")
 
+    # Admin login
+    def get_all_admins(self):
+        admin_username = input('Enter admin username: ')
+        admin_password = input('Enter admin password: ')
+        sql = f"SELECT * FROM admins WHERE admin_username = '{admin_username}' AND admin_password = '{admin_password}' AND admin_status = 'active'"
+        self.cursor.execute(sql)
+        result = self.cursor.fetchall()
+
+        if result:
+            print('Login successful')
+        else:
+            print('Username or password not recognised')
+
 
 # The below is for testing purposes only
 if __name__ == "__main__":
