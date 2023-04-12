@@ -1,23 +1,22 @@
 {% extends "layout.html" %}
 {% block main_content %}
 
-<div class="selection">
-  <div class="content_main_container">
-    <div class="content_container">
+  <!--container class name is from Bootstrap -->
+  <div class="container">
 
       <div class="content_title">
         <h1>Select Media Type</h1>
       </div>
 
-      <div class="icon_selection_container">
-        <button type="submit" name="submit_type" value="sound" class="btn button_type"><img class="icon_type"
+      <!--grid class name is from Bootstrap Grids-->
+      <div class="grid text-center">
+        <!--class name g-col-6 is using Bootstrap grid-->
+        <button type="submit" name="submit_type" value="sound" class="btn button_selection g-col-6"><img class="icon_selection"
             src="/static/media/icons/sound.png" alt="sound_icon"><span class="icon_text">Sound</span></button>
-        <button type="submit" name="submit_type" value="video" class="btn button_type"><img class="icon_type"
+        <button type="submit" name="submit_type" value="video" class="btn button_selection g-col-6"><img class="icon_selection"
             src="/static/media/icons/video.png" alt="video_icon"><span class="icon_text">Video</span></button>
       </div>
 
-    </div>
-  </div>
 </div>
 
 {% endblock %}
