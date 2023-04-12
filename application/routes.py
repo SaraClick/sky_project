@@ -33,8 +33,12 @@ def content_selection():
     # POST to be executed upon user clicking a type
 
     if form.validate_on_submit():
-        user_type = "sound"
-        return user_type
+        if form.data["submit_sound"]:
+            user_type = "sound"
+            return user_type
+        if form.data["submit_video"]:
+            user_type = "video"
+            return user_type
 
     if request.method == 'GET':
         return render_template("content_selection.html", form=form)

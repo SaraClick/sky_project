@@ -7,4 +7,5 @@ from flask_wtf import FlaskForm
 # BasicForm is now a kind of FlaskForm
 class SoundForm(FlaskForm):
     # instantiating various input fields
-    submit_type = SubmitField("Sound")
+    submit_sound = SubmitField("Sound")
+    submit_video = SubmitField("Video")
