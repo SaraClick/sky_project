@@ -1,6 +1,8 @@
-from flask import render_template
+from flask import render_template, request
 from application import app
 from application.python_scripts.data_provider_service import DataProviderService
+from application.forms.forms import SoundForm
+
 
 
 DATA_PROVIDER = DataProviderService()
@@ -22,9 +24,20 @@ def content_media():
     return render_template("content_media.html")
 
 
-@app.route("/content_selection")
+@app.route("/content_selection", methods=['GET', 'POST'])
 def content_selection():
-    return render_template("content_selection.html")
+    user_type = None
+    user_category = None
+    form = SoundForm()
+    # Empty variables to store the user selection from type/category clickable buttons
+    # POST to be executed upon user clicking a type
+
+    if form.validate_on_submit():
+        user_type = "sound"
+        return user_type
+
+    if request.method == 'GET':
+        return render_template("content_selection.html", form=form)
 
 
 @app.route("/tips")
