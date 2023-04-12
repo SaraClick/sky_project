@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% block main_content %}
+
+<!--Using Container from Bootstrap: https://getbootstrap.com/docs/5.3/layout/containers/#how-they-work -->
+<div class="container">
+
+  <div class="content_title">
+    <h1>Select Media Category</h1>
+  </div>
+
+  <!--Using Layout Grids from Bootstrap: https://getbootstrap.com/docs/5.3/layout/grid/#example-->
+  <div class="container text-center">
+    <form method="POST">
+      {{ form.hidden_tag() }}
+      <!--class name g-col-6 is using Bootstrap grid-->
+      <div class="row">
+        <div class="col">
+        <button type="submit" name="submit_wave" value="wave" class="btn button_selection"><img
+            class="icon_selection" src="/static/media/icons/waves.png" alt="sound_icon"><span class="icon_text">Waves</span></button>
+        </div>
+        <div class="col">
+        <button type="submit" name="submit_rain" value="rain" class="btn button_selection"><img
+            class="icon_selection" src="/static/media/icons/rain.png" alt="video_icon"><span class="icon_text">Rain</span></button>
+        </div>
+        <div class="col">
+        <button type="submit" name="submit_whale" value="whale" class="btn button_selection"><img class="icon_selection"
+            src="/static/media/icons/whale.png" alt="video_icon"><span class="icon_text">Whale</span></button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+        <button type="submit" name="submit_brown_noise" value="brown_noise" class="btn button_selection"><img class="icon_selection"
+            src="/static/media/icons/brown_noise.png" alt="video_icon"><span class="icon_text">Brown Noise</span></button>
+        </div>
+        <div class="col">
+        <button type="submit" name="submit_white_noise" value="white_noise" class="btn button_selection"><img class="icon_selection"
+            src="/static/media/icons/white_noise.png" alt="video_icon"><span class="icon_text">White Noise</span></button>
+        </div>
+        <div class="col">
+        <button type="submit" name="submit_instrumental" value="instrumental" class="btn button_selection"><img class="icon_selection"
+            src="/static/media/icons/instrumental.png" alt="video_icon"><span class="icon_text">Instrumental</span></button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+</div>
+
+{% endblock %}

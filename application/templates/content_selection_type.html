@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block main_content %}
+
+<!--Using Container from Bootstrap: https://getbootstrap.com/docs/5.3/layout/containers/#how-they-work -->
+  <div class="container">
+
+      <div class="content_title">
+        <h1>Select Media Type</h1>
+      </div>
+
+    <!--Using Layout Grids from Bootstrap: https://getbootstrap.com/docs/5.3/layout/grid/#example-->
+      <div class="grid text-center">
+          <form method="POST">
+              {{ form.hidden_tag() }}
+        <!--class name g-col-6 is using Bootstrap grid: https://getbootstrap.com/docs/5.3/layout/css-grid/-->
+        <div class="row">
+            <div class="col">
+                <button type="submit" name="submit_sound" value="sound" class="btn button_selection follow-btn"><img class="icon_selection"
+                    src="/static/media/icons/sound.png" alt="sound_icon"><span class="icon_text">Sound</span></button>
+            </div>
+            <div class="col">
+                <button type="submit" name="submit_video" value="video" class="btn button_selection"><img class="icon_selection"
+                    src="/static/media/icons/video.png" alt="video_icon"><span class="icon_text">Video</span></button>
+            </div>
+        </div>
+          </form>
+      </div>
+
+  </div>
+
+{% endblock %}
