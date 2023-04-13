@@ -2,8 +2,6 @@
 
 import pymysql
 import sys
-import redirect
-import url_for
 
 from application.python_scripts.exceptions import MissingKeyData, ValueNotInDDBB
 
@@ -182,11 +180,11 @@ class DataProviderService:
     #         print('Login successful')
     #     else:
     #         print('Username or password not recognised')
-    def get_all_admins(self, email, password):
-        if not email or password:
-            raise MissingKeyData("Email/password has not been recognised")
-        # elif is email and password:
-        #     return
+    # def get_all_admins(self, email, password):
+    #     if not email or password:
+    #         raise MissingKeyData("Email/password has not been recognised")
+    #     elif is email and password:
+    #         return
 
 # The below is for testing purposes only
 if __name__ == "__main__":
