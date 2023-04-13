@@ -1,0 +1,1 @@
+CALL UpdateUrl(18, "https://open.spotify.com/embed/playlist/37i9dQZF1DX2PQDq3PdrHQ?utm_source=generator&theme=0");

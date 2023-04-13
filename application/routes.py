@@ -2,7 +2,7 @@ from flask import render_template, request, redirect, url_for
 from application import app
 from application.python_scripts.data_provider_service import DataProviderService
 from application.forms.forms import TypeForm, CategoryForm
-from application.python_scripts.utils import select_random_from_list
+from random import choice
 
 DATA_PROVIDER = DataProviderService()
 
@@ -18,31 +18,21 @@ def contact():
     return render_template("contact.html")
 
 
-@app.route("/content_media", methods=['GET', 'POST'])
-def content_media(type='video', selected_url="https://www.youtube.com/embed/JmEGknad17w"):
-    # Testing examples
-    # type='sound', selected_url)="https://open.spotify.com/embed/playlist/37i9dQZF1DX2PQDq3PdrHQ?utm_source=generator&theme=0"
-    # type='video', selected_url)="https://www.youtube.com/embed/JmEGknad17w"
-    # list_url = DATA_PROVIDER.get_url(type, category)
-    # print(list_url)
-    # selected_url = select_random_from_list(list_url)
-    # print(selected_url)
-    return render_template("content_media.html", user_type=type, media_url=selected_url)
-
-
 @app.route("/select_type", methods=['GET', 'POST'])
 def content_selection_type():
-    user_type = None
-    form = TypeForm()
+    user_type = None  # empty variable to store the user's type selection
+    form = TypeForm()  # instantiate form
 
     # If there is a submit (aka POST of the form) the below checks will be executed.
+    # Each button has been set as a submit button, by clicking on the button, the user_type variable will be assigned
+    # a string "sound" or "video
     if form.validate_on_submit():
         if form.data["submit_sound"]:
             user_type = "sound"
-            print(user_type)
         if form.data["submit_video"]:
             user_type = "video"
-            print(user_type)
+        # redirect will execute the function inside the url_for(). User type selected on content_selection_type()
+        # is being passed as a named parameter so we can end up using it in the final screen content_media()
         return redirect(url_for("content_selection_category", type_p=user_type))
 
     # If no post method it will render the selection category html file
@@ -51,11 +41,13 @@ def content_selection_type():
 
 @app.route("/select_category", methods=['GET', 'POST'])
 def content_selection_category():
-    form = CategoryForm()
-    user_category = "Victoria"
-    user_type = request.args.get("type_p")
-    print(user_type)
+    form = CategoryForm()  # instantiate form
+    user_category = None  # empty variable to store the user's type selection
+    user_type = request.args.get("type_p")  # named variable stored when select_type was rendered
+
     # If there is a submit (aka POST of the form) the below checks will be executed.
+    # Each button has been set as a submit button, by clicking on the button, the user_category variable will be
+    # assigned a string value with the name of the clicked category
     if form.validate_on_submit():
         if form.data["submit_wave"]:
             user_category = "wave"
@@ -69,22 +61,28 @@ def content_selection_category():
             user_category = "white noise"
         elif form.data["submit_instrumental"]:
             user_category = "instrumental"
-        return f'{user_type} {user_category}'
+        # redirect will execute the function inside the url_for(). User type/category selected on
+        # content_selection_type() and content_selection_category() will be passed as a named parameters so we can
+        # use them in the redirected function content_media()
+        return redirect(url_for("content_media", type_p=user_type, category_p=user_category))
     # If no post method it will render the selection category html file
     return render_template("content_selection_category.html", form=form)
 
 
-# @app.route("/media")
-# def main_media():
-#     form = TypeForm()
-#     user_type = None
-#     if form.validate_on_submit():
-#         if form.data["submit_sound"]:
-#             user_type = "sound"
-#         if form.data["submit_video"]:
-#             user_type = "video"
-#         return render_template("content_selection_category.html", form=form)
-#     return render_template("content_selection_type.html", form=form)
+@app.route("/content_media", methods=['GET', 'POST'])
+def content_media():
+    user_type1 = request.args.get("type_p")  # named parameter from content_selection_type() and passed onto content_selection_category()
+    user_category = request.args.get("category_p")  # named parameter from content_selection_category()
+
+    # Using method to execute select query from MySQL to retrieve the urls matching the type and category from the named parameters
+    list_url = DATA_PROVIDER.get_url(user_type1, user_category)
+    # selected_url is a variable to store a random URL selected from list_url. For this we have imported "random" and
+    # will be using the method choice(list).
+    # choice(list) → returns a random item from a sequence (aka list, tuple, string, or any iterable like range)
+    selected_url = choice(list_url)
+    # We use render template nd named parameters, the named parameters are used within the Jinja code to specify the
+    # type (so we know if we have to use YouTube or Spotify iframe) and the URL to be passed into the iframe
+    return render_template("content_media.html", user_type=user_type1, media_url=selected_url)
 
 
 @app.route("/tips")
