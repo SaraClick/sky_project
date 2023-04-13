@@ -35,3 +35,7 @@ def tips():
 @app.route("/admin_login")
 def admin_login():
     return render_template("admin_login.html")
+
+@app.route("/admin_landing")
+def admin_landing():
+    return render_template("admin_landing.html")
