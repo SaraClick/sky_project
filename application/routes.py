@@ -20,8 +20,11 @@ def contact():
 
 
 @app.route("/content_media", methods=['GET', 'POST'])
-def content_media(type):
-    return render_template("content_media.html", user_type=type)
+def content_media(type, url):
+    # Testing examples
+    # type='sound', url="https://open.spotify.com/embed/playlist/37i9dQZF1DX2PQDq3PdrHQ?utm_source=generator&theme=0"
+    # type='video', url="https://www.youtube.com/embed/JmEGknad17w"
+    return render_template("content_media.html", user_type=type, media_url=url)
 
 
 @app.route("/select_type", methods=['GET', 'POST'])
