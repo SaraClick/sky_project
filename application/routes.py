@@ -2,8 +2,7 @@ from flask import render_template, request
 from application import app
 from application.python_scripts.data_provider_service import DataProviderService
 from application.forms.forms import TypeForm, CategoryForm
-
-
+from application.python_scripts.utils import select_random_from_list
 
 DATA_PROVIDER = DataProviderService()
 
@@ -20,11 +19,15 @@ def contact():
 
 
 @app.route("/content_media", methods=['GET', 'POST'])
-def content_media(type, url):
+def content_media(type, selected_url):
     # Testing examples
-    # type='sound', url="https://open.spotify.com/embed/playlist/37i9dQZF1DX2PQDq3PdrHQ?utm_source=generator&theme=0"
-    # type='video', url="https://www.youtube.com/embed/JmEGknad17w"
-    return render_template("content_media.html", user_type=type, media_url=url)
+    # type='sound', selected_url)="https://open.spotify.com/embed/playlist/37i9dQZF1DX2PQDq3PdrHQ?utm_source=generator&theme=0"
+    # type='video', selected_url)="https://www.youtube.com/embed/JmEGknad17w"
+    # list_url = DATA_PROVIDER.get_url(type, category)
+    # print(list_url)
+    # selected_url = select_random_from_list(list_url)
+    # print(selected_url)
+    return render_template("content_media.html", user_type=type, media_url=selected_url)
 
 
 @app.route("/select_type", methods=['GET', 'POST'])
