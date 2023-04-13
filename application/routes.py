@@ -1,4 +1,4 @@
-from flask import render_template, request
+from flask import render_template, request, redirect, url_for
 from application import app
 from application.python_scripts.data_provider_service import DataProviderService
 from application.forms.forms import TypeForm, CategoryForm
@@ -19,7 +19,7 @@ def contact():
 
 
 @app.route("/content_media", methods=['GET', 'POST'])
-def content_media(type, selected_url):
+def content_media(type='video', selected_url="https://www.youtube.com/embed/JmEGknad17w"):
     # Testing examples
     # type='sound', selected_url)="https://open.spotify.com/embed/playlist/37i9dQZF1DX2PQDq3PdrHQ?utm_source=generator&theme=0"
     # type='video', selected_url)="https://www.youtube.com/embed/JmEGknad17w"
@@ -39,9 +39,11 @@ def content_selection_type():
     if form.validate_on_submit():
         if form.data["submit_sound"]:
             user_type = "sound"
+            print(user_type)
         if form.data["submit_video"]:
             user_type = "video"
-        return user_type
+            print(user_type)
+        return redirect(url_for("content_selection_category", type_p=user_type))
 
     # If no post method it will render the selection category html file
     return render_template("content_selection_type.html", form=form)
@@ -50,7 +52,9 @@ def content_selection_type():
 @app.route("/select_category", methods=['GET', 'POST'])
 def content_selection_category():
     form = CategoryForm()
-    user_category = None
+    user_category = "Victoria"
+    user_type = request.args.get("type_p")
+    print(user_type)
     # If there is a submit (aka POST of the form) the below checks will be executed.
     if form.validate_on_submit():
         if form.data["submit_wave"]:
@@ -65,9 +69,22 @@ def content_selection_category():
             user_category = "white noise"
         elif form.data["submit_instrumental"]:
             user_category = "instrumental"
-        return user_category
+        return f'{user_type} {user_category}'
     # If no post method it will render the selection category html file
     return render_template("content_selection_category.html", form=form)
+
+
+# @app.route("/media")
+# def main_media():
+#     form = TypeForm()
+#     user_type = None
+#     if form.validate_on_submit():
+#         if form.data["submit_sound"]:
+#             user_type = "sound"
+#         if form.data["submit_video"]:
+#             user_type = "video"
+#         return render_template("content_selection_category.html", form=form)
+#     return render_template("content_selection_type.html", form=form)
 
 
 @app.route("/tips")
