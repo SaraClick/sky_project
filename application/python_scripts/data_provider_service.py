@@ -2,6 +2,8 @@
 
 import pymysql
 import sys
+import redirect
+import url_for
 
 from application.python_scripts.exceptions import MissingKeyData, ValueNotInDDBB
 
@@ -169,18 +171,22 @@ class DataProviderService:
             raise ValueNotInDDBB("Category name does not exist in the database")
 
     # Admin login
-    def get_all_admins(self):
-        admin_email = input('Enter admin email: ')
-        admin_password = input('Enter admin password: ')
-        sql = f"SELECT * FROM admins WHERE admin_email = '{admin_email}' AND admin_password = '{admin_password}' AND admin_status = 'active'"
-        self.cursor.execute(sql)
-        result = self.cursor.fetchall()
-
-        if result:
-            print('Login successful')
-        else:
-            print('Username or password not recognised')
-
+    # def get_all_admins(self):
+    #     admin_email = input('Enter admin email: ')
+    #     admin_password = input('Enter admin password: ')
+    #     sql = f"SELECT * FROM admins WHERE admin_email = '{admin_email}' AND admin_password = '{admin_password}' AND admin_status = 'active'"
+    #     self.cursor.execute(sql)
+    #     result = self.cursor.fetchall()
+    #
+    #     if result:
+    #         print('Login successful')
+    #     else:
+    #         print('Username or password not recognised')
+    def get_all_admins(self, email, password):
+        if not email or password:
+            raise MissingKeyData("Email/password has not been recognised")
+        # elif is email and password:
+        #     return
 
 # The below is for testing purposes only
 if __name__ == "__main__":
