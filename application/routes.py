@@ -19,9 +19,9 @@ def contact():
     return render_template("contact.html")
 
 
-@app.route("/content_media")
-def content_media():
-    return render_template("content_media.html")
+@app.route("/content_media", methods=['GET', 'POST'])
+def content_media(type):
+    return render_template("content_media.html", user_type=type)
 
 
 @app.route("/select_type", methods=['GET', 'POST'])
