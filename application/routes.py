@@ -49,8 +49,8 @@ def content_selection_category():
     # Each button has been set as a submit button, by clicking on the button, the user_category variable will be
     # assigned a string value with the name of the clicked category
     if form.validate_on_submit():
-        if form.data["submit_wave"]:
-            user_category = "wave"
+        if form.data["submit_ocean"]:
+            user_category = "ocean"
         elif form.data["submit_rain"]:
             user_category = "rain"
         elif form.data["submit_whale"]:
