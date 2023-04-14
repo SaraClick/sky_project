@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for
 from application import app
 from application.python_scripts.data_provider_service import DataProviderService
-from application.forms.forms import TypeForm, CategoryForm
+from application.forms.forms import TypeForm, CategoryForm, RandomUrlForm
 from random import choice
 
 DATA_PROVIDER = DataProviderService()
@@ -71,6 +71,9 @@ def content_selection_category():
 
 @app.route("/content_media", methods=['GET', 'POST'])
 def content_media():
+    form = RandomUrlForm()  # instantiate form
+
+
     user_type1 = request.args.get("type_p")  # named parameter from content_selection_type() and passed onto content_selection_category()
     user_category = request.args.get("category_p")  # named parameter from content_selection_category()
 
@@ -82,7 +85,12 @@ def content_media():
     selected_url = choice(list_url)
     # We use render template nd named parameters, the named parameters are used within the Jinja code to specify the
     # type (so we know if we have to use YouTube or Spotify iframe) and the URL to be passed into the iframe
-    return render_template("content_media.html", user_type=user_type1, media_url=selected_url)
+
+    if form.validate_on_submit():
+        # If user hits "Select another video/audio" it calls returns the function again
+        if form.data["submit_new_media"]:
+            return render_template("content_media.html", user_type=user_type1, media_url=selected_url, form=form)
+    return render_template("content_media.html", user_type=user_type1, media_url=selected_url, form=form)
 
 
 @app.route("/tips")

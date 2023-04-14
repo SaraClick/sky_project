@@ -129,6 +129,55 @@ footer {
 /* ======================================= CONTENT MEDIA PAGE STYLES =======================================*/
 
 
+/* Button from free source code: https: //uiverse.io/mucahit312ataman610/bright-rattlesnake-77*/
+.submit_new_media {
+  --primary-color: #000;
+  --secondary-color: #fff;
+  --border-color: #000;
+  background-color: var(--primary-color);
+  border: 2px solid var(--border-color);
+  color: var(--secondary-color);
+  padding: 10px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 50px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  z-index: 1;
+  transition: all 0.3s ease-in-out;
+}
+
+.submit_new_media::before {
+  content: "";
+  top: -100%;
+  left: 50%;
+  width: 150%;
+  height: 150%;
+  background-color: var(--secondary-color);
+  border-radius: 50%;
+  transform: translate(-50%, 0) scale(0);
+  z-index: -1;
+  transition: all 0.3s ease-in-out;
+}
+
+.submit_new_media:hover {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 20px rgba(0, 0, 0, 0.2);
+}
+
+.submit_new_media:hover::before {
+  transform: translate(-50%, -50%) scale(2);
+}
+
+.submit_new_media:active {
+  transform: translateY(0);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+
 /* Free source button https: //uiverse.io/KSAplay/smart-bobcat-50*/
 .container_like input {
   opacity: 0;
@@ -194,53 +243,6 @@ footer {
   }
 }
 
-
-/* Button from free source code: https: //uiverse.io/mucahit312ataman610/bright-rattlesnake-77*/
-.submit_new_media {
-  --primary-color: #000;
-  --secondary-color: #fff;
-  --border-color: #000;
-  background-color: var(--primary-color);
-  border: 2px solid var(--border-color);
-  color: var(--secondary-color);
-  padding: 10px 20px;
-  font-size: 18px;
-  font-weight: bold;
-  border-radius: 50px;
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  z-index: 1;
-  transition: all 0.3s ease-in-out;
-}
-
-.submit_new_media::before {
-  content: "";
-  top: -100%;
-  left: 50%;
-  width: 150%;
-  height: 150%;
-  background-color: var(--secondary-color);
-  border-radius: 50%;
-  transform: translate(-50%, 0) scale(0);
-  z-index: -1;
-  transition: all 0.3s ease-in-out;
-}
-
-.submit_new_media:hover {
-  background-color: var(--secondary-color);
-  color: var(--primary-color);
-  transform: translateY(-5px);
-  box-shadow: 0 15px 20px rgba(0, 0, 0, 0.2);
-}
-
-.submit_new_media:hover::before {
-  transform: translate(-50%, -50%) scale(2);
-}
-
-.submit_new_media:active {
-  transform: translateY(0);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-}
 
 
 /* ======================================= CONTACT PAGE STYLES =======================================*/
