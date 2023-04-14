@@ -2,7 +2,7 @@
 -- These updates are needed so the iframe reaches the correct source for the diaplay or the youtube video or spotify playlist
 
 -- ************VIDEO UPDATES************
--- 1	https://youtu.be/Q6MemVxEquE)
+-- 1	https://youtu.be/Q6MemVxEquE
 -- CALL UpdateUrl(1, "");
 -- 2	https://www.youtube.com/live/pvnMgBz_ehU?feature=share
 -- CALL UpdateUrl(2, "");
