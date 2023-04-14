@@ -3,17 +3,17 @@
 
 -- ************VIDEO UPDATES************
 -- 1	https://youtu.be/Q6MemVxEquE
--- CALL UpdateUrl(1, "");
+CALL UpdateUrl(1, "https://www.youtube.com/embed/Q6MemVxEquE");
 -- 2	https://www.youtube.com/live/pvnMgBz_ehU?feature=share
--- CALL UpdateUrl(2, "");
+CALL UpdateUrl(2, "https://www.youtube.com/embed/pvnMgBz_ehU");
 -- 3	https://youtu.be/-YUR5I-sdBk
--- CALL UpdateUrl(3, "");
+CALL UpdateUrl(3, "https://www.youtube.com/embed/-YUR5I-sdBk");
 -- 4	https://youtu.be/qYnA9wWFHLI
--- CALL UpdateUrl(4, "");
+CALL UpdateUrl(4, "https://www.youtube.com/embed/qYnA9wWFHLI");
 -- 5	https://www.youtube.com/watch?v=RqzGzwTY-6w&ab_channel=JasonLewis-MindAmend
--- CALL UpdateUrl(5, "");
+CALL UpdateUrl(5, "https://www.youtube.com/embed/RqzGzwTY-6w");
 -- 6	https://www.youtube.com/watch?v=yIQd2Ya0Ziw&ab_channel=Calm
--- CALL UpdateUrl(6, "");
+CALL UpdateUrl(6, "https://www.youtube.com/embed/yIQd2Ya0Ziw");
 -- 7	https://www.youtube.com/watch?v=AqJuVSu58oI&ab_channel=HALIDONMUSIC
 -- CALL UpdateUrl(7, "");
 
