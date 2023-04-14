@@ -1,6 +1,7 @@
 -- media_url data updates to contain the actual SRC for the iframe instead of the website URL
 -- These updates are needed so the iframe reaches the correct source for the diaplay or the youtube video or spotify playlist
 use fortyWinks;
+
 -- ************VIDEO UPDATES************
 -- 1	https://youtu.be/Q6MemVxEquE
 CALL UpdateUrl(1, "https://www.youtube.com/embed/Q6MemVxEquE");
@@ -15,7 +16,7 @@ CALL UpdateUrl(5, "https://www.youtube.com/embed/RqzGzwTY-6w");
 -- 6	https://www.youtube.com/watch?v=yIQd2Ya0Ziw&ab_channel=Calm
 CALL UpdateUrl(6, "https://www.youtube.com/embed/yIQd2Ya0Ziw");
 -- 7	https://www.youtube.com/watch?v=AqJuVSu58oI&ab_channel=HALIDONMUSIC
-CALL UpdateUrl(7, "https://www.youtube.com/embed/AqJuVSu58oI");
+CALL UpdateUrl(7, "https://www.youtube.com/embed/NChORYXuprE");
 
 
 -- ************SOUND UPDATES************
@@ -30,11 +31,11 @@ CALL UpdateUrl(11, "https://open.spotify.com/embed/playlist/37i9dQZF1DX9M0XCg3OH
 -- 12	https://open.spotify.com/playlist/6KE4MokBWv1w52zDZVBpId?si=312c44079837485d
 CALL UpdateUrl(12, "https://open.spotify.com/embed/playlist/6KE4MokBWv1w52zDZVBpId?utm_source=generator&theme=0");
 -- 14	https://open.spotify.com/album/54vGSK50oe08qxz2xXECEC?si=xspMQI-zRJmRcw8gI-ksgQ
-CALL UpdateUrl(13, "https://open.spotify.com/embed/album/54vGSK50oe08qxz2xXECEC?utm_source=generator&theme=0");
+CALL UpdateUrl(14, "https://open.spotify.com/embed/album/54vGSK50oe08qxz2xXECEC?utm_source=generator&theme=0");
 -- 15	https://open.spotify.com/playlist/37i9dQZF1DWXzR2GKEiHgT?si=8159263fb53b4139
-CALL UpdateUrl(14, "https://open.spotify.com/embed/playlist/37i9dQZF1DWXzR2GKEiHgT?utm_source=generator&theme=0");
+CALL UpdateUrl(15, "https://open.spotify.com/embed/playlist/37i9dQZF1DWXzR2GKEiHgT?utm_source=generator&theme=0");
 -- 16	https://open.spotify.com/playlist/37i9dQZF1DX60xkhEfNtud?si=e5446ee335c84816
-CALL UpdateUrl(15, "https://open.spotify.com/embed/playlist/37i9dQZF1DX60xkhEfNtud?utm_source=generator&theme=0");
+CALL UpdateUrl(16, "https://open.spotify.com/embed/playlist/37i9dQZF1DX60xkhEfNtud?utm_source=generator&theme=0");
 
 CALL UpdateUrl(18, "https://open.spotify.com/embed/playlist/37i9dQZF1DX2PQDq3PdrHQ?utm_source=generator&theme=0");
 CALL UpdateUrl(17, "https://open.spotify.com/embed/playlist/37i9dQZF1DWYcDQ1hSjOpY?utm_source=generator&theme=0");

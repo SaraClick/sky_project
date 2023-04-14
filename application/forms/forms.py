@@ -10,8 +10,9 @@ class TypeForm(FlaskForm):
     submit_sound = SubmitField("sound")
     submit_video = SubmitField("video")
 
+
 class CategoryForm(FlaskForm):
-    submit_wave = SubmitField("waves")
+    submit_ocean = SubmitField("ocean")
     submit_rain = SubmitField("rain")
     submit_whale = SubmitField("whale")
     submit_brown_noise = SubmitField("brown_noise")
