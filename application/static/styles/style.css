@@ -80,12 +80,24 @@ footer {
   text-align: center;
 }
 
+.icons_container_external {
+    /* background-color: #a9bc74; */
+    padding-left: 20%;
+    padding-right: 20%;
+  }
+
+/* .icons_container {
+  background-color: #0e5360;
+} */
+
 .button_selection{
   /*display:inline-block is so we can set the .icon_text to be centered */
-  /* display: inline-block; */
+  display: inline-block;
   background-color: #74b2bc;
   border-radius: 25%;
-  margin: 8%;
+  margin: 3%;
+  width: 12rem;
+  height: 10rem;
 }
 
 /*Add effect when hovering: change button background color and add a delay of 0.8sec*/
@@ -95,20 +107,23 @@ footer {
 }
 
 .button_selection .icon_text{
-  /*display:block and text-align:center is so we can set the .icon_text to be centered */
-  /* text-align: center;
-  display: block; */
-  padding: 15%;
+  /* display:block and text-align:center is so we can set the .icon_text to be centered */
+  text-align: center;
+  display: block;
+  padding-top: 5%;
   font-family: 'Nova Round', cursive;
   color: #034854;
   font-weight: bold;
+}
+
+.button_selection img {
+  padding-top: 2%;
 }
 
 .icon_selection {
   width: 100px;
   height: 100px;
 }
-
 
 
 /* ======================================= CONTENT MEDIA PAGE STYLES =======================================*/
