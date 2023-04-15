@@ -79,3 +79,26 @@ footer {
 
 
 /* ======================================= CONTACT PAGE STYLES =======================================*/
+
+
+
+/* ======================================= ADMIN LOGIN =======================================*/
+
+.login_container {
+  padding-left: 20%;
+  padding-right: 20%;
+  padding-top: 30%;
+}
+
+
+.admin_login_form {
+  padding-left: 20%;
+  padding-right: 20%;
+
+}
+
+.login_title {
+  text-align: center;
+  padding-bottom: 5%;
+}
+
