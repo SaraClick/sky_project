@@ -1,6 +1,44 @@
 {% extends "layout.html" %}
 {% block main_content %}
 
+<div class="container">
+    <div class="content_title">
+        <h1>Media</h1>
+    </div>
 
+    <div class="container text-center">
+        <div class="icons_container_external">
+            <div class="row">
+                <div class="col">
+                    {% if user_type == 'video' %}
+                    <!--YouTube iframe -->
+                    <iframe width="560" height="315" src={{media_url}} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    {% endif %}
+                    {% if user_type == 'sound' %}
+                    <!--Spotify iframe -->
+                    <iframe style="border-radius:12px" src={{media_url}} width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Ref used for submission of like button to be passed on checkbox change: https://stackoverflow.com/questions/10602470/submitting-a-form-when-a-checkbox-is-checked-->
+            <form method="POST" id="MediaOutputForm" class="select_another_media_button">
+                {{ form.hidden_tag() }}
+                <div class="row">
+                    <div clas="col">
+                        {% if user_type == 'video' %}
+                        <button type="submit" name="submit_new_media" value="new_media" class="submit_new_media">Select another video</button>
+                        {% endif %}
+                        {% if user_type == 'sound' %}
+                        <button type="submit" name="submit_new_media" value="new_media" class="submit_new_media">Select another audio</button>
+                        {% endif %}
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--CHECK THIS TO STOP RELOAD AFTER FAVOURITE SUBMISSION: https://www.geeksforgeeks.org/flask-form-submission-without-page-reload/-->
 
 {% endblock %}
