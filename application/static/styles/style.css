@@ -75,7 +75,7 @@ footer {
 
 .content_title {
   /* border: 4px solid rgb(0, 13, 255); */
-  margin-top: 5%;
+  padding-top: 15%;
   padding-bottom: 2%;
   text-align: center;
 }
@@ -127,7 +127,9 @@ footer {
 
 
 /* ======================================= CONTENT MEDIA PAGE STYLES =======================================*/
-
+.select_another_media_button {
+  padding-top: 5%;
+}
 
 /* Button from free source code: https: //uiverse.io/mucahit312ataman610/bright-rattlesnake-77*/
 .submit_new_media {
