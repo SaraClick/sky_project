@@ -75,17 +75,29 @@ footer {
 
 .content_title {
   /* border: 4px solid rgb(0, 13, 255); */
-  padding: 5%;
   margin-top: 5%;
+  padding-bottom: 2%;
   text-align: center;
 }
 
+.icons_container_external {
+    /* background-color: #a9bc74; */
+    padding-left: 20%;
+    padding-right: 20%;
+  }
+
+/* .icons_container {
+  background-color: #0e5360;
+} */
+
 .button_selection{
   /*display:inline-block is so we can set the .icon_text to be centered */
-  /* display: inline-block; */
+  display: inline-block;
   background-color: #74b2bc;
   border-radius: 25%;
-  margin: 8%;
+  margin: 3%;
+  width: 12rem;
+  height: 10rem;
 }
 
 /*Add effect when hovering: change button background color and add a delay of 0.8sec*/
@@ -95,13 +107,17 @@ footer {
 }
 
 .button_selection .icon_text{
-  /*display:block and text-align:center is so we can set the .icon_text to be centered */
-  /* text-align: center;
-  display: block; */
-  padding: 15%;
+  /* display:block and text-align:center is so we can set the .icon_text to be centered */
+  text-align: center;
+  display: block;
+  padding-top: 5%;
   font-family: 'Nova Round', cursive;
   color: #034854;
   font-weight: bold;
+}
+
+.button_selection img {
+  padding-top: 2%;
 }
 
 .icon_selection {
@@ -110,11 +126,122 @@ footer {
 }
 
 
-
 /* ======================================= CONTENT MEDIA PAGE STYLES =======================================*/
 
 
+/* Button from free source code: https: //uiverse.io/mucahit312ataman610/bright-rattlesnake-77*/
+.submit_new_media {
+  --primary-color: #000;
+  --secondary-color: #fff;
+  --border-color: #000;
+  background-color: var(--primary-color);
+  border: 2px solid var(--border-color);
+  color: var(--secondary-color);
+  padding: 10px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 50px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  z-index: 1;
+  transition: all 0.3s ease-in-out;
+}
 
+.submit_new_media::before {
+  content: "";
+  top: -100%;
+  left: 50%;
+  width: 150%;
+  height: 150%;
+  background-color: var(--secondary-color);
+  border-radius: 50%;
+  transform: translate(-50%, 0) scale(0);
+  z-index: -1;
+  transition: all 0.3s ease-in-out;
+}
+
+.submit_new_media:hover {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 20px rgba(0, 0, 0, 0.2);
+}
+
+.submit_new_media:hover::before {
+  transform: translate(-50%, -50%) scale(2);
+}
+
+.submit_new_media:active {
+  transform: translateY(0);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+
+/* Free source button https: //uiverse.io/KSAplay/smart-bobcat-50*/
+.container_like input {
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.container_like {
+  cursor: pointer;
+  font-size: 20px;
+  user-select: none;
+  transition: 100ms;
+}
+
+.checkmark {
+  top: 0;
+  left: 0;
+  height: 2em;
+  width: 2em;
+  transition: 100ms;
+  animation: dislike_effect 400ms ease;
+}
+
+.container_like input:checked~.checkmark path {
+  fill: #FF5353;
+  stroke-width: 0;
+}
+
+.container_like input:checked~.checkmark {
+  animation: like_effect 400ms ease;
+}
+
+.container_like:hover {
+  transform: scale(1.03);
+}
+
+@keyframes like_effect {
+  0% {
+    transform: scale(0);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes dislike_effect {
+  0% {
+    transform: scale(0);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
 
 
 

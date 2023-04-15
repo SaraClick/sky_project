@@ -10,6 +10,7 @@ class TypeForm(FlaskForm):
     submit_sound = SubmitField("sound")
     submit_video = SubmitField("video")
 
+
 class CategoryForm(FlaskForm):
     submit_ocean = SubmitField("ocean")
     submit_rain = SubmitField("rain")
@@ -17,6 +18,14 @@ class CategoryForm(FlaskForm):
     submit_brown_noise = SubmitField("brown_noise")
     submit_white_noise = SubmitField("white_noise")
     submit_instrumental = SubmitField("instrumental")
+
+
+class MediaOutputForm(FlaskForm):
+    submit_new_media = SubmitField("new_media")
+    submit_favourite = SubmitField("favourite")
+
+
+
 
 
 

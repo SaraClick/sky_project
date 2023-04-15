@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for
 from application import app
 from application.python_scripts.data_provider_service import DataProviderService
-from application.forms.forms import TypeForm, CategoryForm
+from application.forms.forms import TypeForm, CategoryForm, MediaOutputForm
 from random import choice
 
 DATA_PROVIDER = DataProviderService()
@@ -65,12 +65,20 @@ def content_selection_category():
         # content_selection_type() and content_selection_category() will be passed as a named parameters so we can
         # use them in the redirected function content_media()
         return redirect(url_for("content_media", type_p=user_type, category_p=user_category))
+
     # If no post method it will render the selection category html file
     return render_template("content_selection_category.html", form=form)
 
 
 @app.route("/content_media", methods=['GET', 'POST'])
 def content_media():
+    form = MediaOutputForm()  # instantiate form
+
+    # fav variable is currently holding False for testing purposes.
+    # TODO: create back end for fav storage relation between user-media and get fav status from MySQL
+    fav = False
+
+
     user_type1 = request.args.get("type_p")  # named parameter from content_selection_type() and passed onto content_selection_category()
     user_category = request.args.get("category_p")  # named parameter from content_selection_category()
 
@@ -82,7 +90,22 @@ def content_media():
     selected_url = choice(list_url)
     # We use render template nd named parameters, the named parameters are used within the Jinja code to specify the
     # type (so we know if we have to use YouTube or Spotify iframe) and the URL to be passed into the iframe
-    return render_template("content_media.html", user_type=user_type1, media_url=selected_url)
+
+    if form.validate_on_submit():
+        # If user hits "Select another video/audio" it calls returns the function again
+        if form.data["submit_new_media"]:
+            return render_template("content_media.html", user_type=user_type1, media_url=selected_url, favourite=fav, form=form)
+
+        if form.data["submit_favourite"]:
+            # TODO: once back end is implemented, we need to add MySQL query to update the fav status on table
+            if fav:  # if fav = True
+                # change fav value to False as the user has clicked to change the fav status
+                fav = False
+            else:  # if fav = False
+                # change fav value to True as the user has clicked to change the fav status
+                fav = True
+
+    return render_template("content_media.html", user_type=user_type1, media_url=selected_url, favourite=fav, form=form)
 
 
 @app.route("/tips")
