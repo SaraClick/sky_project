@@ -165,7 +165,7 @@ def admin_update_url():
             sql_idcheck = "SELECT media_id, media_url FROM media WHERE media_id=%s;"
             DATA_PROVIDER.cursor.execute(sql_idcheck, media_id_toupdate)
             result_idcheck = DATA_PROVIDER.cursor.fetchone()
-            print(result_idcheck)
+            # print(result_idcheck)
 
             if result_idcheck[0] > 0:
                 sql_updateurl = "UPDATE media SET media_Url=%s WHERE media_id=%s;"
@@ -198,6 +198,16 @@ def admin_update_url():
 def admin_add():
     form = AdminAddMedia()
     msg = ''
-    return render_template("admin_add.html", form=form, message=msg)
+    sql_type = "SELECT DISTINCT type_id, type_name FROM type_media;"
+    DATA_PROVIDER.cursor.execute(sql_type)
+    result_type = DATA_PROVIDER.cursor.fetchall()
+    print(result_type)
+    msg_type = ''
+    for type_tuple in result_type:
+        msg_type += f'  {type_tuple[0]}: {type_tuple[1]}'
+    return render_template("admin_add.html", form=form, message=msg, helper_type=msg_type)
+
+
+
 
 
