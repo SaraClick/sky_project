@@ -74,6 +74,10 @@ def content_selection_category():
 def content_media():
     form = MediaOutputForm()  # instantiate form
 
+    # fav variable is currently holding False for testing purposes.
+    # TODO: create back end for fav storage relation between user-media and get fav status from MySQL
+    fav = False
+
     user_type1 = request.args.get("type_p")  # named parameter from content_selection_type() and passed onto content_selection_category()
     user_category = request.args.get("category_p")  # named parameter from content_selection_category()
 
@@ -90,6 +94,15 @@ def content_media():
         # If user hits "Select another video/audio" it calls returns the function again
         if form.data["submit_new_media"]:
             return render_template("content_media.html", user_type=user_type1, media_url=selected_url, form=form)
+
+        if form.data["submit_favourite"]:
+            # TODO: once back end is implemented, we need to add MySQL query to update the fav status on table
+            if fav:  # if fav = True
+                # change fav value to False as the user has clicked to change the fav status
+                fav = False
+            else:  # if fav = False
+                # change fav value to True as the user has clicked to change the fav status
+                fav = True
 
     return render_template("content_media.html", user_type=user_type1, media_url=selected_url, form=form)
 
