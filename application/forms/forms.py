@@ -20,8 +20,11 @@ class CategoryForm(FlaskForm):
     submit_instrumental = SubmitField("instrumental")
 
 
-class RandomUrlForm(FlaskForm):
+class MediaOutputForm(FlaskForm):
     submit_new_media = SubmitField("new_media")
+    submit_favourite = SubmitField("favourite")
+
+
 
 
 

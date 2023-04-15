@@ -21,7 +21,8 @@
                 </div>
             </div>
 
-            <form method="POST">
+            <!-- Ref used for submission of like button to be passed on checkbox change: https://stackoverflow.com/questions/10602470/submitting-a-form-when-a-checkbox-is-checked-->
+            <form method="POST" id="MediaOutputForm">
                 {{ form.hidden_tag() }}
                 <div class="row">
                     <div clas="col">
@@ -34,7 +35,11 @@
 
                         <!--Free source buttons: https://uiverse.io/KSAplay/smart-bobcat-50-->
                         <label class="container_like">
-                            <input checked="checked" type="checkbox">
+                            {% if favourite == True %}
+                            <input type="checkbox" checked="checked" name="submit_favourite" onchange="document.getElementById('MediaOutputForm').submit()">
+                            {% else %}
+                            <input type="checkbox" name="submit_favourite" onchange="document.getElementById('MediaOutputForm').submit()">
+                            {% endif %}
                             <div class="checkmark">
                                 <svg viewBox="0 0 256 256">
                                     <rect fill="none" height="256" width="256"></rect>
@@ -49,6 +54,8 @@
             </form>
         </div>
     </div>
-</div>    
+</div>
+
+<!--CHECK THIS TO STOP RELOAD AFTER FAVOURITE SUBMISSION: https://www.geeksforgeeks.org/flask-form-submission-without-page-reload/-->
 
 {% endblock %}
