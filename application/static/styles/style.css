@@ -271,3 +271,11 @@ footer {
   padding-bottom: 5%;
 }
 
+
+/* ======================================= ADMIN UPDATE =======================================*/
+
+.submit_button_form {
+  background-color: #b4869f;
+  border: none;
+
+}
