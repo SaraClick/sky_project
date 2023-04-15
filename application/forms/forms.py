@@ -1,5 +1,6 @@
-from wtforms import SubmitField, StringField
+from wtforms import SubmitField, StringField, SelectField
 from flask_wtf import FlaskForm
+from wtforms.validators import InputRequired
 
 
 # inheritance
@@ -45,7 +46,7 @@ class AdminUpdateUrl(FlaskForm):
 class AdminAddMedia(FlaskForm):
     media_title = StringField("media_title")
     media_url = StringField("media_url")
-    type_id = StringField("type_id")
+    type_id = SelectField("Type", choices=[(1, "video"), (2, "sound")], validators=[InputRequired()], coerce=int)
     source_id = StringField("source_id")
     category_id = StringField("category_id")
     submit_add = SubmitField("submit_add")

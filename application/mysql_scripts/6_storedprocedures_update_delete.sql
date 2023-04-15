@@ -26,4 +26,4 @@ END$$
 DELIMITER ; 
 
 -- Uncomment to test
--- CALL DeleteMedia(19);
+-- CALL DeleteMedia(21);
