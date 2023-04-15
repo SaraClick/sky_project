@@ -51,8 +51,7 @@ class AdminAddMedia(FlaskForm):
     submit_add = SubmitField("submit_add")
 
 
-
-
-
-
-
+class AdminDeleteMedia(FlaskForm):
+    media_id = StringField("media_id")
+    media_url = StringField("media_url")
+    submit_delete = SubmitField("submit_delete")

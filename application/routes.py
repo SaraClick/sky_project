@@ -2,7 +2,7 @@ from flask import render_template, request, redirect, url_for
 from application import app
 from application.python_scripts.data_provider_service import DataProviderService
 from application.forms.forms import TypeForm, CategoryForm, MediaOutputForm, AdminLandingForm, AdminLogin, \
-    AdminUpdateUrl, AdminAddMedia
+    AdminUpdateUrl, AdminAddMedia, AdminDeleteMedia
 from random import choice
 
 DATA_PROVIDER = DataProviderService()
@@ -24,7 +24,7 @@ def content_selection_type():
     user_type = None  # empty variable to store the user's type selection
     form = TypeForm()  # instantiate form
 
-    # If there is a submit (aka POST of the form) the below checks will be executed.
+    # If submit done (aka POST of the form) the below checks will be executed.
     # Each button has been set as a submit button, by clicking on the button, the user_type variable will be assigned
     # a string "sound" or "video
     if form.validate_on_submit():
@@ -33,7 +33,7 @@ def content_selection_type():
         if form.data["submit_video"]:
             user_type = "video"
         # redirect will execute the function inside the url_for(). User type selected on content_selection_type()
-        # is being passed as a named parameter so we can end up using it in the final screen content_media()
+        # is being passed as a named parameter, so we can end up using it in the final screen content_media()
         return redirect(url_for("content_selection_category", type_p=user_type))
 
     # If no post method it will render the selection category html file
@@ -46,7 +46,7 @@ def content_selection_category():
     user_category = None  # empty variable to store the user's type selection
     user_type = request.args.get("type_p")  # named variable stored when select_type was rendered
 
-    # If there is a submit (aka POST of the form) the below checks will be executed.
+    # If submit done (aka POST of the form) the below checks will be executed.
     # Each button has been set as a submit button, by clicking on the button, the user_category variable will be
     # assigned a string value with the name of the clicked category
     if form.validate_on_submit():
@@ -63,7 +63,7 @@ def content_selection_category():
         elif form.data["submit_instrumental"]:
             user_category = "instrumental"
         # redirect will execute the function inside the url_for(). User type/category selected on
-        # content_selection_type() and content_selection_category() will be passed as a named parameters so we can
+        # content_selection_type() and content_selection_category() will be passed as a named parameters, so we can
         # use them in the redirected function content_media()
         return redirect(url_for("content_media", type_p=user_type, category_p=user_category))
 
@@ -139,7 +139,7 @@ def admin_landing():
         elif form.data["submit_update"]:
             return redirect(url_for("admin_update_url"))
         elif form.data["submit_delete"]:
-            return "delete"
+            return redirect(url_for("admin_delete"))
 
     return render_template("admin_landing.html", form=form)
 
@@ -152,7 +152,7 @@ def admin_update_url():
     if request.method == 'POST':
 
         try:
-            # Try block to check that botk ID and URL have been provided
+            # Try block to check that both ID and URL have been provided
             media_id_toupdate = int(request.form['media_id'])
             media_url = request.form['media_url']
 
@@ -208,6 +208,32 @@ def admin_add():
     return render_template("admin_add.html", form=form, message=msg, helper_type=msg_type)
 
 
+@app.route("/admin_delete", methods=['GET', 'POST'])
+def admin_delete():
+    form = AdminDeleteMedia()
+    msg = ''
 
+    if request.method == 'POST':
+        try:
+            # Try block to check that media ID has been provided
+            media_id = int(request.form['media_id'])
+        except ValueError:
+            # Except block to catch the Value Error when no data is provided
+            msg = "Deletion not executed, provide a valid ID."
+        else:
+            # Else block to execute whenever there is no errors (aka when ID has been provided)
+            sql_idcheck = "SELECT media_id FROM media WHERE media_id=%s;"
+            DATA_PROVIDER.cursor.execute(sql_idcheck, media_id)
+            result_idcheck = DATA_PROVIDER.cursor.fetchone()
 
+            if result_idcheck:
+                sql_delete = "DELETE FROM media WHERE media_id=%s;"
+                result_delete = DATA_PROVIDER.cursor.execute(sql_delete, media_id)
+                DATA_PROVIDER.conn.commit()
 
+                if result_delete:
+                    msg = "Media successfully deleted!"
+            else:
+                msg = "Media ID not found, deletion not executed."
+
+    return render_template("admin_delete.html", form=form, message=msg)
