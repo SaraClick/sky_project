@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% block main_content %}
+
+<div class="container">
+  <div class="login_container">
+
+    <div class="login_title">
+      <h1>Add New Media</h1>
+    </div>
+
+    {% if message %}
+    <div class="alert alert-danger">{{ message }}</div>
+    {% endif %}
+    <form method="POST" class="admin_login_form">
+      {{ form.hidden_tag() }}
+      <div class="mb-3">
+        <label class="form-label">Title</label>
+        <input type="text" class="form-control" id="media_title" name="media_title">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">URL (src tag info)</label>
+        <input type="text" class="form-control" id="media_url" name="media_url">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Type ID</label>
+        <input type="number" class="form-control" id="type_id"  name="type_id">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Source ID</label>
+        <input type="number" class="form-control" id="source_id"  name="source_id">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Category ID</label>
+        <input type="number" class="form-control" id="category_id"  name="category_id">
+      </div>
+
+
+      <button type="submit" class="btn btn-primary submit_button_form" name="submit_update">Add</button>
+    </form>
+  </div>
+</div>
+
+
+
+{% endblock %}

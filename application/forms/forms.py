@@ -37,9 +37,18 @@ class AdminLandingForm(FlaskForm):
 
 
 class AdminUpdateUrl(FlaskForm):
-    media_id = StringField("Email")
-    media_url = StringField("Password")
+    media_id = StringField("media_id")
+    media_url = StringField("media_url")
     submit_update = SubmitField("submit_update")
+
+
+class AdminAddMedia(FlaskForm):
+    media_title = StringField("media_title")
+    media_url = StringField("media_url")
+    type_id = StringField("type_id")
+    source_id = StringField("source_id")
+    category_id = StringField("category_id")
+    submit_add = SubmitField("submit_add")
 
 
 

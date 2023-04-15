@@ -2,7 +2,7 @@ from flask import render_template, request, redirect, url_for
 from application import app
 from application.python_scripts.data_provider_service import DataProviderService
 from application.forms.forms import TypeForm, CategoryForm, MediaOutputForm, AdminLandingForm, AdminLogin, \
-    AdminUpdateUrl
+    AdminUpdateUrl, AdminAddMedia
 from random import choice
 
 DATA_PROVIDER = DataProviderService()
@@ -135,7 +135,7 @@ def admin_landing():
     if form.validate_on_submit():
         # If user hits "Select another video/audio" it calls returns the function again
         if form.data["submit_add"]:
-            return "add"
+            return redirect(url_for("admin_add"))
         elif form.data["submit_update"]:
             return redirect(url_for("admin_update_url"))
         elif form.data["submit_delete"]:
@@ -192,5 +192,12 @@ def admin_update_url():
                 # print(f'media type "{media_id}": {type(media_id)}')
 
     return render_template("admin_updateurl.html", form=form, message=msg)
+
+
+@app.route("/admin_add", methods=['GET', 'POST'])
+def admin_add():
+    form = AdminAddMedia()
+    msg = ''
+    return render_template("admin_add.html", form=form, message=msg)
 
 
