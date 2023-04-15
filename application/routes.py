@@ -1,7 +1,8 @@
 from flask import render_template, request, redirect, url_for
 from application import app
 from application.python_scripts.data_provider_service import DataProviderService
-from application.forms.forms import TypeForm, CategoryForm, MediaOutputForm, AdminLandingForm
+from application.forms.forms import TypeForm, CategoryForm, MediaOutputForm, AdminLandingForm, AdminLogin, \
+    AdminUpdateUrl
 from random import choice
 
 DATA_PROVIDER = DataProviderService()
@@ -106,25 +107,25 @@ def tips():
 
 @app.route("/admin_login", methods=['GET', 'POST'])
 def admin_login():
+    form = AdminLogin()  # instantiate form
     error = ""
     if request.method == 'POST':
-        admin_email = request.form['admin_email']
-        admin_password = request.form['admin_password']
+        email = request.form['admin_email']
+        password = request.form['admin_password']
 
         # checks validation of the inputted admin email and password
         sql = "SELECT * FROM admins WHERE admin_email = %s AND admin_password = %s AND admin_status = 'active'"
-        DATA_PROVIDER.cursor.execute(sql, (admin_email, admin_password))
+        DATA_PROVIDER.cursor.execute(sql, (email, password))
         result = DATA_PROVIDER.cursor.fetchone()
 
         if result is not None:
             # If the admin email and password are correct, go to the admin landing page
             return redirect(url_for("admin_landing"))
-            #return render_template('admin_landing.html')
         else:
             # If the admin email and password are incorrect, display an error message
             error = "Invalid email or password"
 
-    return render_template("admin_login.html", title="Admin Login", message=error)
+    return render_template("admin_login.html", message=error, form=form)
 
 
 @app.route("/admin_landing", methods=['GET', 'POST'])
@@ -136,8 +137,60 @@ def admin_landing():
         if form.data["submit_add"]:
             return "add"
         elif form.data["submit_update"]:
-            return "update"
+            return redirect(url_for("admin_update_url"))
         elif form.data["submit_delete"]:
             return "delete"
 
     return render_template("admin_landing.html", form=form)
+
+
+@app.route("/admin_update", methods=['GET', 'POST'])
+def admin_update_url():
+    form = AdminUpdateUrl()  # instantiate form
+    msg = ""
+
+    if request.method == 'POST':
+
+        try:
+            # Try block to check that botk ID and URL have been provided
+            media_id_toupdate = int(request.form['media_id'])
+            media_url = request.form['media_url']
+
+        except ValueError:
+            # Except block to catch the Value Error when no data is provided
+            msg = "Update not executed, provide an ID and URL."
+
+        else:
+            # Else block to execute whenever there is no errors (aka when both ID and URL have been provided)
+            sql_idcheck = "SELECT media_id, media_url FROM media WHERE media_id=%s;"
+            DATA_PROVIDER.cursor.execute(sql_idcheck, media_id_toupdate)
+            result_idcheck = DATA_PROVIDER.cursor.fetchone()
+            print(result_idcheck)
+
+            if result_idcheck[0] > 0:
+                sql_updateurl = "UPDATE media SET media_Url=%s WHERE media_id=%s;"
+                result_update = DATA_PROVIDER.cursor.execute(sql_updateurl, (media_url, media_id_toupdate))
+                # conn.commit() is needed to execute the UPDATE. Without the commit() MySQL starts the transaction to
+                # UPDATE but if no commit() is found, it will rollback directly
+                # Ref link: https://stackoverflow.com/questions/17758074/pymysql-update-query
+                DATA_PROVIDER.conn.commit()
+
+                if result_update:
+                    # print(f'result_update "{result_update}": {type(result_update)}')
+                    # print(f'media_url "{media_url}": {type(media_url)}')
+                    # print(f'media type "{media_id_toupdate}": {type(media_id_toupdate)}')
+                    msg = "URL updated!"
+
+                # print(f'result type "{result}": {type(result)}')
+                # print(f'media type "{media_id}": {type(media_id)}')
+            else:
+                if not result_idcheck:
+                    msg = "Unknown Media ID, update not executed."
+                else:
+                    msg = "Update not executed."
+                # print(f'result type "{result}": {type(result)}')
+                # print(f'media type "{media_id}": {type(media_id)}')
+
+    return render_template("admin_updateurl.html", form=form, message=msg)
+
+

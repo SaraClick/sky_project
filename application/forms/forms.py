@@ -1,4 +1,4 @@
-from wtforms import SubmitField
+from wtforms import SubmitField, StringField
 from flask_wtf import FlaskForm
 
 
@@ -24,12 +24,22 @@ class MediaOutputForm(FlaskForm):
     submit_new_media = SubmitField("new_media")
 
 
+class AdminLogin(FlaskForm):
+    admin_email = StringField("Email")
+    admin_password = StringField("Password")
+    submit_login = SubmitField("submit_login")
+
+
 class AdminLandingForm(FlaskForm):
     submit_add = SubmitField("add_media")
     submit_update = SubmitField("update_media")
     submit_delete = SubmitField("delete_media")
 
 
+class AdminUpdateUrl(FlaskForm):
+    media_id = StringField("Email")
+    media_url = StringField("Password")
+    submit_update = SubmitField("submit_update")
 
 
 
