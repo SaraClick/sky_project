@@ -24,6 +24,12 @@ class MediaOutputForm(FlaskForm):
     submit_new_media = SubmitField("new_media")
 
 
+class AdminLandingForm(FlaskForm):
+    submit_add = SubmitField("add_media")
+    submit_update = SubmitField("update_media")
+    submit_delete = SubmitField("delete_media")
+
+
 
 
 

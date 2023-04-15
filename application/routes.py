@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for
 from application import app
 from application.python_scripts.data_provider_service import DataProviderService
-from application.forms.forms import TypeForm, CategoryForm, MediaOutputForm
+from application.forms.forms import TypeForm, CategoryForm, MediaOutputForm, AdminLandingForm
 from random import choice
 
 DATA_PROVIDER = DataProviderService()
@@ -118,7 +118,8 @@ def admin_login():
 
         if result is not None:
             # If the admin email and password are correct, go to the admin landing page
-            return render_template('admin_landing.html')
+            return redirect(url_for("admin_landing"))
+            #return render_template('admin_landing.html')
         else:
             # If the admin email and password are incorrect, display an error message
             error = "Invalid email or password"
@@ -126,6 +127,17 @@ def admin_login():
     return render_template("admin_login.html", title="Admin Login", message=error)
 
 
-@app.route("/admin_landing")
+@app.route("/admin_landing", methods=['GET', 'POST'])
 def admin_landing():
-    return render_template("admin_landing.html")
+    form = AdminLandingForm()  # instantiate form
+
+    if form.validate_on_submit():
+        # If user hits "Select another video/audio" it calls returns the function again
+        if form.data["submit_add"]:
+            return "add"
+        elif form.data["submit_update"]:
+            return "update"
+        elif form.data["submit_delete"]:
+            return "delete"
+
+    return render_template("admin_landing.html", form=form)
