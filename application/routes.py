@@ -140,6 +140,8 @@ def admin_landing():
             return redirect(url_for("admin_update_url"))
         elif form.data["submit_delete"]:
             return redirect(url_for("admin_delete"))
+        elif form.data["submit_viewddbb"]:
+            return redirect(url_for("admin_viewddbb"))
 
     return render_template("admin_landing.html", form=form)
 
@@ -237,3 +239,13 @@ def admin_delete():
                 msg = "Media ID not found, deletion not executed."
 
     return render_template("admin_delete.html", form=form, message=msg)
+
+
+
+@app.route("/admin_viewddbb", methods=['GET', 'POST'])
+def admin_viewddbb():
+    sql_query = "SELECT media_id, media_title, media_url, type_id, type_name, source_id, source_name, category_id, category_name FROM vw_media;"
+    DATA_PROVIDER.cursor.execute(sql_query)
+    sql_data = DATA_PROVIDER.cursor.fetchall()
+    return render_template("admin_viewddbb.html", data=sql_data)
+

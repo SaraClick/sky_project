@@ -279,3 +279,14 @@ footer {
   border: none;
 
 }
+
+
+/* ======================================= ADMIN VIEW DDBB =======================================*/
+
+.ddbb_container {
+  padding-top: 5%;
+}
+
+.table_viewddbb{
+  background-color: #74b2bc;
+}

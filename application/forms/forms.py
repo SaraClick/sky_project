@@ -34,6 +34,7 @@ class AdminLandingForm(FlaskForm):
     submit_add = SubmitField("add_media")
     submit_update = SubmitField("update_media")
     submit_delete = SubmitField("delete_media")
+    submit_viewddbb = SubmitField("view_ddbb")
 
 
 class AdminUpdateUrl(FlaskForm):
