@@ -39,9 +39,9 @@
             <!--Free source buttons: https://uiverse.io/KSAplay/smart-bobcat-50-->
             <label class="container_like">
                 {% if favourite == True %}
-                <input type="checkbox" checked="checked" name="submit_favourite" onchange="document.getElementById('MediaOutputForm').submit()">
+                <input type="checkbox" class="fav_check" id="favourite_check" checked="checked" name="submit_favourite" onchange="document.getElementById('MediaOutputForm').submit()">
                 {% else %}
-                <input type="checkbox" name="submit_favourite" onchange="document.getElementById('MediaOutputForm').submit()">
+                <input type="checkbox" class="fav_check" id="favourite_check" name="submit_favourite" onchange="document.getElementById('MediaOutputForm').submit()">
                 {% endif %}
                 <div class="checkmark">
                     <svg viewBox="0 0 256 256">

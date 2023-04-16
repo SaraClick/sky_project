@@ -74,6 +74,61 @@ class DataProviderService:
             urls_list = self._single_item_tuple_to_list_convertor(urls)
             return urls_list
 
+    def get_id_from_url(self, media_url):
+        """Given a URL, it returns the media_if it belongs to"""
+        sql_id = "SELECT media_id from media WHERE media_url=%s;"  # %s is a placeholder for input to be given
+        self.cursor.execute(sql_id, media_url)
+        media_id_to_url = self.cursor.fetchone()  # tuple of tuple elements containing row data
+        # the below will convert the tuple of tuples "urls" onto a list of strings
+        media_id = media_id_to_url[0]
+        return media_id
+
+    def get_favourite_status(self, media_id):
+        """Given a media_id, it returns True if set to fav, otherwise False"""
+        fav_status = False
+        sql_fav = "SELECT fav FROM favourite WHERE media_id=%s;;"  # %s is a placeholder for input to be given
+        self.cursor.execute(sql_fav, media_id)
+        result = self.cursor.fetchone()  # tuple of tuple elements containing row data
+        # the below will convert the tuple of tuples "urls" onto a list of strings
+        # print(f'get_favourite_status RESULT: {result}')
+        # print(f'get_favourite_status RESULT TYPE: {type(result)}')
+
+        if result and result[0] == True:
+            fav_status = True
+        return fav_status
+
+    def set_favourite(self, media_id):
+        """Given a media_id, checks the current fav status and updates it to its opposite, returns new fav status"""
+        # Check if media_id is in favourite table
+        sql_check = "SELECT media_id FROM favourite WHERE media_id=%s;"
+        self.cursor.execute(sql_check, media_id)
+        result = self.cursor.fetchone()
+        print(f'id in favourite table? {result}')
+
+        # if there is no media_id in the table, we insert the ID
+        if not result:
+            sql = "INSERT INTO favourite(media_id, fav) VALUES(%s, %s);"
+            self.cursor.execute(sql, (media_id, True))
+            self.conn.commit()
+
+        # if the id is already in the table
+        else:
+            if self.get_favourite_status(media_id):
+                sql = "UPDATE favourite SET fav = False WHERE media_id=%s"
+                self.cursor.execute(sql, media_id)
+                self.conn.commit()
+
+            else:
+                sql = "UPDATE favourite SET fav = True WHERE media_id=%s"
+                self.cursor.execute(sql, media_id)
+                self.conn.commit()
+
+        new_status = self.get_favourite_status(media_id)
+        return new_status
+
+
+
+
     def set_type(self, type_name):
         """Given a new type_name string, inserts the type_name into the database."""
         # The below sql string is the query that will run inside mySql. This will call the GetType stored procedure.
@@ -184,3 +239,6 @@ if __name__ == "__main__":
     # print(MYSQL.set_category("test_category"))
     # print(MYSQL.get_all_unique_categories())
     # print(MYSQL.set_media("test_media", "test_url", 1, 1, 3))
+    print(MYSQL.get_id_from_url("https://www.youtube.com/embed/M0qWBKQ7ldY"))  #77
+    # print(MYSQL.get_favourite_status(1))
+    # print(MYSQL.set_favourite(2))

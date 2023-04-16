@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, jsonify
 from application import app
 from application.python_scripts.data_provider_service import DataProviderService
 from application.forms.forms import TypeForm, CategoryForm, MediaOutputForm, AdminLandingForm, AdminLogin, \
@@ -79,6 +79,7 @@ def content_media():
     # TODO: create back end for fav storage relation between user-media and get fav status from MySQL
     fav = False
 
+    # RETRIEVE THE URL USING THE TYPE AND CATEGORY FROM PREVIOUS PAGE SELECTIONS
     user_type1 = request.args.get("type_p")  # named parameter from content_selection_type() and passed onto content_selection_category()
     user_category = request.args.get("category_p")  # named parameter from content_selection_category()
 
@@ -91,10 +92,14 @@ def content_media():
     # We use render template nd named parameters, the named parameters are used within the Jinja code to specify the
     # type (so we know if we have to use YouTube or Spotify iframe) and the URL to be passed into the iframe
 
+    # RETRIEVE THE FAVOURITE STATUS OF THE URL SHOWN
+    url_id = DATA_PROVIDER.get_id_from_url(selected_url)
+    fav_status = DATA_PROVIDER.get_favourite_status(url_id)
+
     if form.validate_on_submit():
         # If user hits "Select another video/audio" it calls returns the function again
         if form.data["submit_new_media"]:
-            return render_template("content_media.html", user_type=user_type1, media_url=selected_url, form=form)
+            return render_template("content_media.html", user_type=user_type1, media_url=selected_url, form=form, favourite=fav_status)
 
         if form.data["submit_favourite"]:
             # TODO: once back end is implemented, we need to add MySQL query to update the fav status on table
@@ -105,7 +110,7 @@ def content_media():
                 # change fav value to True as the user has clicked to change the fav status
                 fav = True
 
-    return render_template("content_media.html", user_type=user_type1, media_url=selected_url, form=form)
+    return render_template("content_media.html", user_type=user_type1, media_url=selected_url, form=form, favourite=fav_status)
 
 
 @app.route("/tips")
@@ -275,4 +280,5 @@ def admin_viewddbb():
     DATA_PROVIDER.cursor.execute(sql_query)
     sql_data = DATA_PROVIDER.cursor.fetchall()
     return render_template("admin_viewddbb.html", data=sql_data)
+
 
