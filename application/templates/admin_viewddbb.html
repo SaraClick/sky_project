@@ -9,7 +9,7 @@
     </div>
 
     <form action="/admin_viewddbb" method="POST">
-      <table class="table table_viewddbb">
+      <table class="table table-striped table-hover table_viewddbb">
         <thead>
           <tr>
             <th scope="col">Media ID</th>
@@ -23,8 +23,8 @@
             <th scope="col">Category</th>
           </tr>
         </thead>
-        
-        <tbody>
+  
+        <tbody class="table-group-divider">
                  {% for row in data%}
             <tr>
             <th scope="col">{{ row[0] }}</th>

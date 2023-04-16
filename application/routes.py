@@ -214,6 +214,7 @@ def admin_add():
 def admin_delete():
     form = AdminDeleteMedia()
     msg = ''
+    sql_element_to_delete = None
 
     if request.method == 'POST':
         try:
@@ -228,6 +229,11 @@ def admin_delete():
             DATA_PROVIDER.cursor.execute(sql_idcheck, media_id)
             result_idcheck = DATA_PROVIDER.cursor.fetchone()
 
+            # WORKING IN PROGRESS
+            # sql_query = "SELECT media_id, media_title, media_url, type_name, source_name, category_name FROM vw_media WHERE media_id=%s;"
+            # DATA_PROVIDER.cursor.execute(sql_query, media_id)
+            # sql_element_to_delete = DATA_PROVIDER.cursor.fetchall()
+
             if result_idcheck:
                 sql_delete = "DELETE FROM media WHERE media_id=%s;"
                 result_delete = DATA_PROVIDER.cursor.execute(sql_delete, media_id)
@@ -238,13 +244,13 @@ def admin_delete():
             else:
                 msg = "Media ID not found, deletion not executed."
 
-    return render_template("admin_delete.html", form=form, message=msg)
+    return render_template("admin_delete.html", form=form, message=msg, data=sql_element_to_delete)
 
 
 
 @app.route("/admin_viewddbb", methods=['GET', 'POST'])
 def admin_viewddbb():
-    sql_query = "SELECT media_id, media_title, media_url, type_id, type_name, source_id, source_name, category_id, category_name FROM vw_media;"
+    sql_query = "SELECT media_id, media_title, media_url, type_id, type_name, source_id, source_name, category_id, category_name FROM vw_media ORDER BY media_id;"
     DATA_PROVIDER.cursor.execute(sql_query)
     sql_data = DATA_PROVIDER.cursor.fetchall()
     return render_template("admin_viewddbb.html", data=sql_data)
