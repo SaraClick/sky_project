@@ -294,3 +294,7 @@ footer {
 .table_viewddbb{
   background-color: #a6c6cb;
 }
+
+.table_row_text {
+  font-weight: normal;
+}
