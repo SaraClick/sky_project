@@ -208,17 +208,20 @@ def admin_add():
         source_id = form.source_id.data
         category_id = form.category_id.data
 
-        try:
-            # Try block to insert data into DDBB and call InsertMedia stored procedure
-            sql_add = "CALL InsertMedia(%s, %s, %s, %s, %s);"
-            result_add = DATA_PROVIDER.cursor.execute(sql_add, (media_title, media_url, type_id, source_id, category_id))
-            DATA_PROVIDER.conn.commit()
+        if content_media and media_url and type_id and source_id and category_id:
+            try:
+                # Try block to insert data into DDBB and call InsertMedia stored procedure
+                sql_add = "CALL InsertMedia(%s, %s, %s, %s, %s);"
+                result_add = DATA_PROVIDER.cursor.execute(sql_add, (media_title, media_url, type_id, source_id, category_id))
+                DATA_PROVIDER.conn.commit()
 
-            if result_add:
-                msg = "Media successfully added!"
-        except Exception as e:
-            # Except block to catch errors
-            msg = f"Error occurred while adding media: {e}"
+                if result_add:
+                    msg = "Media successfully added!"
+            except Exception as e:
+                # Except block to catch errors
+                msg = f"Error occurred while adding media: {e}"
+        else:
+            msg = "All fields must contain data to add new media."
 
     return render_template("admin_add.html", form=form, message=msg)
 
