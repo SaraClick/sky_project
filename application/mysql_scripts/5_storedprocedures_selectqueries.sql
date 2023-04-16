@@ -46,5 +46,3 @@ DELIMITER ;
 
 -- Uncomment to test
 -- CALL GetUrl('sound', 'instrumental');
-
-

@@ -33,10 +33,3 @@ FOREIGN KEY (type_id) REFERENCES type_media(type_id),
 FOREIGN KEY (source_id) REFERENCES source_media(source_id),
 FOREIGN KEY (category_id) REFERENCES category_media(category_id)
 );
-
-
-
-
-
-
-

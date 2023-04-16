@@ -199,15 +199,28 @@ def admin_update_url():
 @app.route("/admin_add", methods=['GET', 'POST'])
 def admin_add():
     form = AdminAddMedia()
-    msg = ''
-    sql_type = "SELECT DISTINCT type_id, type_name FROM type_media;"
-    DATA_PROVIDER.cursor.execute(sql_type)
-    result_type = DATA_PROVIDER.cursor.fetchall()
-    print(result_type)
-    msg_type = ''
-    for type_tuple in result_type:
-        msg_type += f'  {type_tuple[0]}: {type_tuple[1]}'
-    return render_template("admin_add.html", form=form, message=msg, helper_type=msg_type)
+    msg = ""
+
+    if request.method == 'POST':
+        media_title = form.media_title.data
+        media_url = form.media_url.data
+        type_id = form.type_id.data
+        source_id = form.source_id.data
+        category_id = form.category_id.data
+
+        try:
+            # Try block to insert data into DDBB and call InsertMedia stored procedure
+            sql_add = "CALL InsertMedia(%s, %s, %s, %s, %s);"
+            result_add = DATA_PROVIDER.cursor.execute(sql_add, (media_title, media_url, type_id, source_id, category_id))
+            DATA_PROVIDER.conn.commit()
+
+            if result_add:
+                msg = "Media successfully added!"
+        except Exception as e:
+            # Except block to catch errors
+            msg = f"Error occurred while adding media: {e}"
+
+    return render_template("admin_add.html", form=form, message=msg)
 
 
 @app.route("/admin_delete", methods=['GET', 'POST'])

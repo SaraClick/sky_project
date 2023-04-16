@@ -1,5 +1,6 @@
-from wtforms import SubmitField, StringField
+from wtforms import SubmitField, StringField, SelectField
 from flask_wtf import FlaskForm
+from wtforms.validators import InputRequired
 
 
 # inheritance
@@ -43,12 +44,13 @@ class AdminUpdateUrl(FlaskForm):
     submit_update = SubmitField("submit_update")
 
 
+# Added dropdowns to help admins add media easier
 class AdminAddMedia(FlaskForm):
     media_title = StringField("media_title")
     media_url = StringField("media_url")
-    type_id = StringField("type_id")
-    source_id = StringField("source_id")
-    category_id = StringField("category_id")
+    type_id = SelectField("Type", choices=[(1, "video"), (2, "sound")], validators=[InputRequired()], coerce=int)
+    source_id = SelectField("Source", choices=[(1, "youtube"), (2, "spotify")], validators=[InputRequired()], coerce=int)
+    category_id = SelectField("Category", choices=[(1, "brown noise"), (2, "white noise"), (3, "ocean"), (4, "whale"), (5, "rain"), (6, "instrumental")], validators=[InputRequired()], coerce=int)
     submit_add = SubmitField("submit_add")
 
 
