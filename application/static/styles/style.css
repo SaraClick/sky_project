@@ -15,8 +15,15 @@ body{
 main {
   width: 100%;
   height: 100%;
+  padding-bottom: 2%;
+  margin: 0 0 100px;
+  padding: 25px;
 }
 
+html {
+  position: relative;
+  min-height: 100%;
+}
 
 /* ======================================= NAVBAR STYLES =======================================*/
 
@@ -46,9 +53,13 @@ font-size:large;
 
 /* ======================================= FOOTER STYLES =======================================*/
 #footer_main_container{
-  position: fixed;
+  position: absolute;
+  left: 0;
   bottom: 0;
+  height: 100px;
   width: 100%;
+  overflow: hidden;
+
   background-image: linear-gradient(360deg, #b0dee6, #148ca1, #096372, #034854);
   font-family: 'Nova Round', cursive; 
   color: #DAE6E7;
@@ -75,7 +86,7 @@ footer {
 
 .content_title {
   /* border: 4px solid rgb(0, 13, 255); */
-  padding-top: 15%;
+  padding-top: 10%;
   padding-bottom: 2%;
   text-align: center;
 }
@@ -248,3 +259,52 @@ footer {
 
 
 /* ======================================= CONTACT PAGE STYLES =======================================*/
+
+
+
+/* ======================================= ADMIN LOGIN =======================================*/
+
+.login_container {
+  padding-left: 20%;
+  padding-right: 20%;
+  padding-top: 10%;
+}
+
+
+.admin_login_form {
+  padding-left: 20%;
+  padding-right: 20%;
+
+}
+
+.login_title {
+  text-align: center;
+  padding-bottom: 5%;
+}
+
+
+/* ======================================= ADMIN UPDATE =======================================*/
+
+.submit_button_form {
+  background-color: #b4869f;
+  border: none;
+}
+
+
+/* ======================================= ADMIN DELETE =======================================*/
+
+
+
+/* ======================================= ADMIN VIEW DDBB =======================================*/
+
+.ddbb_container {
+  padding-top: 5%;
+}
+
+.table_viewddbb{
+  background-color: #a6c6cb;
+}
+
+.table_row_text {
+  font-weight: normal;
+}

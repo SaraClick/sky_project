@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block main_content %}
+
+<div class="container">
+  <div class="login_container">
+
+    <div class="login_title">
+      <h1>Update Media URL</h1>
+    </div>
+
+    {% if message %}
+    <div class="alert alert-danger">{{ message }}</div>
+    {% endif %}
+    <form action="/admin_update" method="POST" class="admin_login_form">
+      {{ form.hidden_tag() }}
+      <div class="mb-3">
+        <label class="form-label">Media ID</label>
+        <input type="number" class="form-control" id="media_id"  name="media_id">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">New URL</label>
+        <input type="text" class="form-control" id="media_url" name="media_url">
+      </div>
+      <button type="submit" class="btn btn-primary submit_button_form" name="submit_update">Update</button>
+    </form>
+  </div>
+</div>
+
+
+
+{% endblock %}

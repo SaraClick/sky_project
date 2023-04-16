@@ -5,7 +5,9 @@
 use fortywinks;
 
 -- type_media insertions
--- CALL InsertType(type_name)CALL InsertType("video");CALL InsertType("sound");
+-- CALL InsertType(type_name)
+CALL InsertType("video");
+CALL InsertType("sound");
 
 -- source_media insertions
 -- CALL InsertSource(source_name)
@@ -41,6 +43,5 @@ CALL InsertMedia("Deep Ocean Deep Sleep", "https://open.spotify.com/playlist/37i
 CALL InsertMedia("Whale Sounds", "https://open.spotify.com/playlist/37i9dQZF1DX60xkhEfNtud?si=e5446ee335c84816", 2, 2, 4);
 CALL InsertMedia("Deep Sleep", "https://open.spotify.com/playlist/37i9dQZF1DWYcDQ1hSjOpY?si=7227318af1194a0c", 2, 2, 6);
 CALL InsertMedia("Lofi Sleep", "https://open.spotify.com/playlist/37i9dQZF1DX2PQDq3PdrHQ?si=4dcd2f9157a44c6e", 2, 2, 6); 
-
 
 
