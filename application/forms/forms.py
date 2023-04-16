@@ -43,6 +43,7 @@ class AdminUpdateUrl(FlaskForm):
     submit_update = SubmitField("submit_update")
 
 
+# Added dropdowns to help admins add media easier
 class AdminAddMedia(FlaskForm):
     media_title = StringField("media_title")
     media_url = StringField("media_url")

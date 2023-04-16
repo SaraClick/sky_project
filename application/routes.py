@@ -207,7 +207,7 @@ def admin_add():
         category_id = form.category_id.data
 
         try:
-            # Try block to insert data into database
+            # Try block to insert data into DDBB and call InsertMedia stored procedure
             sql_add = "CALL InsertMedia(%s, %s, %s, %s, %s);"
             result_add = DATA_PROVIDER.cursor.execute(sql_add, (media_title, media_url, type_id, source_id, category_id))
             DATA_PROVIDER.conn.commit()
