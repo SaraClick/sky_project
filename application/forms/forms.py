@@ -47,8 +47,8 @@ class AdminAddMedia(FlaskForm):
     media_title = StringField("media_title")
     media_url = StringField("media_url")
     type_id = SelectField("Type", choices=[(1, "video"), (2, "sound")], validators=[InputRequired()], coerce=int)
-    source_id = StringField("source_id")
-    category_id = StringField("category_id")
+    source_id = SelectField("Source", choices=[(1, "youtube"), (2, "spotify")], validators=[InputRequired()], coerce=int)
+    category_id = SelectField("Category", choices=[(1, "brown noise"), (2, "white noise"), (3, "ocean"), (4, "whale"), (5, "rain"), (6, "instrumental")], validators=[InputRequired()], coerce=int)
     submit_add = SubmitField("submit_add")
 
 
