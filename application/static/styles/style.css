@@ -260,7 +260,21 @@ footer {
 
 /* ======================================= CONTACT PAGE STYLES =======================================*/
 
+/* ======================================= CONTACT PAGE STYLES =======================================*/
 
+.contact-page .row {
+  display: flex;
+  flex-direction: column; /* change the direction of the flex container */
+}
+
+.contact-page .card {
+  margin-top: 50px;
+}
+
+/*.contact-page .card-title, .address {
+  font-family: 'Nova Round', cursive;
+  font-size: 18px;
+}*/
 
 /* ======================================= ADMIN LOGIN =======================================*/
 
