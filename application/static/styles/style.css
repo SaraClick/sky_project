@@ -16,8 +16,14 @@ main {
   width: 100%;
   height: 100%;
   padding-bottom: 2%;
+  margin: 0 0 100px;
+  padding: 25px;
 }
 
+html {
+  position: relative;
+  min-height: 100%;
+}
 
 /* ======================================= NAVBAR STYLES =======================================*/
 
@@ -47,9 +53,13 @@ font-size:large;
 
 /* ======================================= FOOTER STYLES =======================================*/
 #footer_main_container{
-  position: fixed;
+  position: absolute;
+  left: 0;
   bottom: 0;
+  height: 100px;
   width: 100%;
+  overflow: hidden;
+
   background-image: linear-gradient(360deg, #b0dee6, #148ca1, #096372, #034854);
   font-family: 'Nova Round', cursive; 
   color: #DAE6E7;
