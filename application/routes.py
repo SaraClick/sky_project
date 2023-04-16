@@ -263,3 +263,8 @@ def admin_viewddbb():
     sql_data = DATA_PROVIDER.cursor.fetchall()
     return render_template("admin_viewddbb.html", data=sql_data)
 
+
+@app.route("/sheep_count")
+def sheep_count():
+
+    return render_template("sheep_counter.html")
