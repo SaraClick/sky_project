@@ -31,12 +31,27 @@
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid navbar_main_container">
 
+      <!--This JINJA code is checking the href, if and caption of the tuples in the list and checking if the
+      page id matches, then it has a <a> depending if the name agreed or not-->
+      {% set navigation_bar = [
+      ('/admin_login', 'home', 'Logout')
+      ] -%}
+      {% set active_page = active_page|default('home') -%}
+      {% for href, id, caption in navigation_bar %}
+        {% if id!=active_page %}
       <!-- Logo showing topleft of navbar, redirecting user to Home page-->
       <a class="navbar-brand" id="navbar_icon" href="/admin_landing"><img id="icon_navbar"
           src="/static/media/logo/fw_darkteal.png"></a>
+      {% else %}
+      <a class="navbar-brand" id="navbar_icon" href="/admin_login"><img id="icon_navbar"
+          src="/static/media/logo/fw_darkteal.png"></a>
+      {% endif%}
+        {% endfor %}
 
-        <!-- div containing the name of all the tabs to show in the navbar-->
 
+      <!-- div containing the name of all the tabs to show in the navbar-->
+      <!--This JINJA code is checking the href, if and caption of the tuples in the list and checking if the
+      page id matches. If the HTML is not set to active_page it won't have a logout icon, otherwise the icon will show-->
       {% set navigation_bar = [
       ('/admin_login', 'home', 'Logout')
       ] -%}
@@ -52,7 +67,7 @@
         {% endfor %}
    
       </div>
-      
+
     </div>
   </nav>
 

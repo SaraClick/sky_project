@@ -39,10 +39,12 @@
 
         <!-- Div containing the different items of the navbar-->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          
           <!-- unordered list containing the name of all the tabs to show in the navbar-->
 
-
-
+          <!--This JINJA code is checking the href, if and caption of the tuples in the list and checking if the
+          page id matches. If the HTML is not set to active_page, the nav_bar will show normal, otherwise the active
+          page name on the navbar will show different style-->
           {% set navigation_bar = [
           ('/home', 'home', 'Home'),
           ('/select_type', 'media', 'Media'),
