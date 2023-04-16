@@ -35,20 +35,51 @@ html {
 .navbar_main_container {
   background-color: #99bec6;
   /*z-index:500 is needed so the navbar goes on top of the main content when hamburger menu is expanded https: //stackoverflow.com/questions/30997510/body-text-goes-over-the-top-of-fixed-nav-bar*/
-  z-index: 500
+  z-index: 500;
 }
 
 .navbar {
 --bs-navbar-padding-y: 0rem;
 font-family: 'Nova Round', cursive; 
 /*font-style: italic;*/
-font-size:large;
+font-size: larger;
+vertical-align: central;
+align-items: center;
+
+text-align: center;
 }
 
 .navbar-nav a { 
   color: #034854;
   font-weight:bolder;
 }
+
+.navbar_active {
+  background-color:#034854;
+
+}
+
+.navbar_active a{
+  color: #9e788f;
+}
+
+.navbar_active a:hover {
+  color: #e2d1d9;
+}
+
+.navbar-nav a:hover {
+  color: #9e788f;
+}
+
+.navbar_li {
+  padding-right: 10%;
+  align-content: center;
+}
+
+.logout {
+  margin-top: 0.25rem;
+}
+
 
 
 /* ======================================= FOOTER STYLES =======================================*/
@@ -308,3 +339,5 @@ footer {
 .table_row_text {
   font-weight: normal;
 }
+
+
