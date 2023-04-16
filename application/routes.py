@@ -242,11 +242,6 @@ def admin_delete():
             DATA_PROVIDER.cursor.execute(sql_idcheck, media_id)
             result_idcheck = DATA_PROVIDER.cursor.fetchone()
 
-            # WORKING IN PROGRESS
-            # sql_query = "SELECT media_id, media_title, media_url, type_name, source_name, category_name FROM vw_media WHERE media_id=%s;"
-            # DATA_PROVIDER.cursor.execute(sql_query, media_id)
-            # sql_element_to_delete = DATA_PROVIDER.cursor.fetchall()
-
             if result_idcheck:
                 sql_delete = "DELETE FROM media WHERE media_id=%s;"
                 result_delete = DATA_PROVIDER.cursor.execute(sql_delete, media_id)
