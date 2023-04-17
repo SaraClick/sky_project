@@ -83,11 +83,11 @@ class DataProviderService:
         media_id = media_id_to_url[0]
         return media_id
 
-    def get_favourite_status(self, media_id):
+    def get_favourite_status(self, media_id, user_id):
         """Given a media_id, it returns True if set to fav, otherwise False"""
         fav_status = False
-        sql_fav = "SELECT fav FROM favourite WHERE media_id=%s;;"  # %s is a placeholder for input to be given
-        self.cursor.execute(sql_fav, media_id)
+        sql_fav = "SELECT fav FROM favourite WHERE media_id=%s AND user_id=%s;"  # %s is a placeholder for input to be given
+        self.cursor.execute(sql_fav, (media_id, user_id))
         result = self.cursor.fetchone()  # tuple of tuple elements containing row data
         # the below will convert the tuple of tuples "urls" onto a list of strings
         # print(f'get_favourite_status RESULT: {result}')
@@ -97,36 +97,61 @@ class DataProviderService:
             fav_status = True
         return fav_status
 
-    def set_favourite(self, media_id):
+    def set_favourite(self, media_id, user_id):
         """Given a media_id, checks the current fav status and updates it to its opposite, returns new fav status"""
         # Check if media_id is in favourite table
-        sql_check = "SELECT media_id FROM favourite WHERE media_id=%s;"
-        self.cursor.execute(sql_check, media_id)
+        sql_check = "SELECT media_id FROM favourite WHERE media_id=%s AND user_id=%s;"
+        self.cursor.execute(sql_check, (media_id, user_id))
         result = self.cursor.fetchone()
         print(f'id in favourite table? {result}')
 
         # if there is no media_id in the table, we insert the ID
         if not result:
-            sql = "INSERT INTO favourite(media_id, fav) VALUES(%s, %s);"
-            self.cursor.execute(sql, (media_id, True))
+            sql = "INSERT INTO favourite(media_id, fav, user_id) VALUES(%s, %s, %s);"
+            self.cursor.execute(sql, (media_id, True, user_id))
             self.conn.commit()
 
         # if the id is already in the table
         else:
-            if self.get_favourite_status(media_id):
-                sql = "UPDATE favourite SET fav = False WHERE media_id=%s"
-                self.cursor.execute(sql, media_id)
+            if self.get_favourite_status(media_id, user_id):
+                sql = "UPDATE favourite SET fav = False WHERE media_id=%s AND user_id=%s"
+                self.cursor.execute(sql, (media_id, user_id))
                 self.conn.commit()
 
             else:
-                sql = "UPDATE favourite SET fav = True WHERE media_id=%s"
-                self.cursor.execute(sql, media_id)
+                sql = "UPDATE favourite SET fav = True WHERE media_id=%s AND user_id=%s"
+                self.cursor.execute(sql, (media_id, user_id))
                 self.conn.commit()
 
-        new_status = self.get_favourite_status(media_id)
+        new_status = self.get_favourite_status(media_id, user_id)
         return new_status
 
+    def get_user_email(self, user_id):
+        sql = "SELECT user_email FROM users WHERE user_id=%s;"  # %s is a placeholder for input to be given
+        self.cursor.execute(sql, user_id)
+        result = self.cursor.fetchone()
+        return result[0]
 
+    def get_user_name(self, user_id):
+        sql = "SELECT user_name FROM users WHERE user_id=%s;"  # %s is a placeholder for input to be given
+        self.cursor.execute(sql, user_id)
+        result = self.cursor.fetchone()
+        return result[0]
+
+    def get_user_id_from_email(self, user_email):
+        sql = "SELECT user_id FROM users WHERE user_email=%s;"  # %s is a placeholder for input to be given
+        self.cursor.execute(sql, user_email)
+        result = self.cursor.fetchone()
+        return result[0]
+
+    def user_login(self, user_email, user_password):
+        sql = "SELECT user_password FROM users WHERE user_email=%s;"  # %s is a placeholder for input to be given
+        self.cursor.execute(sql, user_email)
+        result = self.cursor.fetchone()
+        login_success = False
+        if result[0] == user_password:
+            login_success = True
+        return login_success
 
 
     def set_type(self, type_name):
@@ -240,5 +265,7 @@ if __name__ == "__main__":
     # print(MYSQL.get_all_unique_categories())
     # print(MYSQL.set_media("test_media", "test_url", 1, 1, 3))
     print(MYSQL.get_id_from_url("https://www.youtube.com/embed/M0qWBKQ7ldY"))  #77
-    # print(MYSQL.get_favourite_status(1))
-    # print(MYSQL.set_favourite(2))
+    # print(MYSQL.get_favourite_status(14, 2))
+    # print(MYSQL.set_favourite(14, 2))
+    # print(MYSQL.user_login("user1@email.com", "wrong_password"))
+    # print(MYSQL.user_login("user1@email.com", "password1"))

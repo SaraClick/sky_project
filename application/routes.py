@@ -2,7 +2,7 @@ from flask import render_template, request, redirect, url_for, jsonify
 from application import app
 from application.python_scripts.data_provider_service import DataProviderService
 from application.forms.forms import TypeForm, CategoryForm, MediaOutputForm, AdminLandingForm, AdminLogin, \
-    AdminUpdateUrl, AdminAddMedia, AdminDeleteMedia
+    AdminUpdateUrl, AdminAddMedia, AdminDeleteMedia, MediaFavouriteForm
 from random import choice
 
 DATA_PROVIDER = DataProviderService()
@@ -73,11 +73,8 @@ def content_selection_category():
 
 @app.route("/content_media", methods=['GET', 'POST'])
 def content_media():
-    form = MediaOutputForm()  # instantiate form
-
-    # fav variable is currently holding False for testing purposes.
-    # TODO: create back end for fav storage relation between user-media and get fav status from MySQL
-    fav = False
+    form1 = MediaOutputForm()  # instantiate form
+    form2 = MediaFavouriteForm()
 
     # RETRIEVE THE URL USING THE TYPE AND CATEGORY FROM PREVIOUS PAGE SELECTIONS
     user_type1 = request.args.get("type_p")  # named parameter from content_selection_type() and passed onto content_selection_category()
@@ -94,23 +91,24 @@ def content_media():
 
     # RETRIEVE THE FAVOURITE STATUS OF THE URL SHOWN
     url_id = DATA_PROVIDER.get_id_from_url(selected_url)
-    fav_status = DATA_PROVIDER.get_favourite_status(url_id)
+    print(url_id)
+    fav_status = DATA_PROVIDER.get_favourite_status(url_id, 1)
+    # print(fav_status)
 
-    if form.validate_on_submit():
+    if form2.validate_on_submit() and form2.data["submit_favourite"]:
+        # if form.data["submit_favourite"]:
+        # TODO: only working on non-favourites!! When set as fav, the hear goes red but the URL changes, needs to stat on the same media
+        # return "fav runs"
+        print(f"before {fav_status}")
+        DATA_PROVIDER.set_favourite(url_id, 1)
+        fav_status = DATA_PROVIDER.get_favourite_status(url_id, 1)
+        print(f"after {fav_status}")
+
+    if form1.validate_on_submit() and form1.data["submit_new_media"]:
         # If user hits "Select another video/audio" it calls returns the function again
-        if form.data["submit_new_media"]:
-            return render_template("content_media.html", user_type=user_type1, media_url=selected_url, form=form, favourite=fav_status)
+        return render_template("content_media.html", form1=form1, form2=form2, user_type=user_type1, media_url=selected_url, userID=1, favourite=fav_status)
 
-        if form.data["submit_favourite"]:
-            # TODO: once back end is implemented, we need to add MySQL query to update the fav status on table
-            if fav:  # if fav = True
-                # change fav value to False as the user has clicked to change the fav status
-                fav = False
-            else:  # if fav = False
-                # change fav value to True as the user has clicked to change the fav status
-                fav = True
-
-    return render_template("content_media.html", user_type=user_type1, media_url=selected_url, form=form, favourite=fav_status)
+    return render_template("content_media.html", form1=form1, form2=form2, user_type=user_type1, media_url=selected_url, userID=1, favourite=fav_status)
 
 
 @app.route("/tips")

@@ -23,6 +23,9 @@ class CategoryForm(FlaskForm):
 
 class MediaOutputForm(FlaskForm):
     submit_new_media = SubmitField("new_media")
+
+
+class MediaFavouriteForm(FlaskForm):
     submit_favourite = SubmitField("favourite")
 
 
