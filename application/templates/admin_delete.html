@@ -1,30 +1,70 @@
 {% extends "layout.html" %}
 {% block main_content %}
 
-<div class="container">
-  <div class="login_container">
-
-    <div class="login_title">
-      <h1>Delete Media</h1>
+  <h2>Delete Media</h2>
+  {% if message %}
+    <div class="alert alert-info" role="alert">{{ message }}</div>
+  {% endif %}
+  <form method="post" action="">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+      {{ form.search_term.label }} {{ form.search_term(size=40) }} {{ form.search_btn() }}
     </div>
-
-    {% if message %}
-    <div class="alert alert-danger">{{ message }}</div>
+    {% if media %}
+      {% if not media_id %}
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Title</th>
+              <th>Type</th>
+              <th>Source</th>
+              <th>Category</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in media %}
+              <tr>
+                <td>{{ row.media_id }}</td>
+                <td>{{ row.media_title }}</td>
+                <td>{{ row.type_name }}</td>
+                <td>{{ row.source_name }}</td>
+                <td>{{ row.category_name }}</td>
+                <td><a href="{{ url_for('admin_delete', media_id=row.media_id) }}">Delete</a></td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        <table class="table">
+          <tbody>
+            <tr>
+              <td>ID</td>
+              <td>{{ media.media_id }}</td>
+            </tr>
+            <tr>
+              <td>Title</td>
+              <td>{{ media.media_title }}</td>
+            </tr>
+            <tr>
+              <td>Type</td>
+              <td>{{ media.type_name }}</td>
+            </tr>
+            <tr>
+              <td>Source</td>
+              <td>{{ media.source_name }}</td>
+            </tr>
+            <tr>
+              <td>Category</td>
+              <td>{{ media.category_name }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="form-group">
+          {{ form.confirm_delete }} <a href="{{ url_for('admin_delete') }}" class="btn btn-primary">Cancel</a>
+        </div>
+      {% endif %}
     {% endif %}
-
-    <form action="/admin_delete" method="POST" class="admin_login_form">
-      {{ form.hidden_tag() }}
-      <div class="mb-3">
-          <label class="form-label">Media ID</label>
-          <input type="number" class="form-control" id="media_id" name="media_id">
-      </div>
-
-      <button type="submit" class="btn btn-danger submit_button_form" name="submit_delete">Delete</button>
-    </form>
-  </div>
-</div>
-
-
-
-
+  </form>
 {% endblock %}

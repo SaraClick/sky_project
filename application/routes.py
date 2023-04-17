@@ -1,8 +1,8 @@
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, flash
 from application import app
 from application.python_scripts.data_provider_service import DataProviderService
 from application.forms.forms import TypeForm, CategoryForm, MediaOutputForm, AdminLandingForm, AdminLogin, \
-    AdminUpdateUrl, AdminAddMedia, AdminDeleteMedia
+    AdminUpdateUrl, AdminAddMedia, AdminDeleteMediaForm
 from random import choice
 
 DATA_PROVIDER = DataProviderService()
@@ -225,35 +225,61 @@ def admin_add():
 
 @app.route("/admin_delete", methods=['GET', 'POST'])
 def admin_delete():
-    form = AdminDeleteMedia()
+    form = AdminDeleteMediaForm()
     msg = ''
-    sql_element_to_delete = None
+    media = None
 
     if request.method == 'POST':
-        try:
-            # Try block to check that media ID has been provided
-            media_id = int(request.form['media_id'])
-        except ValueError:
-            # Except block to catch the Value Error when no data is provided
-            msg = "Deletion not executed, provide a valid ID."
-        else:
-            # Else block to execute whenever there is no errors (aka when ID has been provided)
-            sql_idcheck = "SELECT media_id FROM media WHERE media_id=%s;"
-            DATA_PROVIDER.cursor.execute(sql_idcheck, media_id)
-            result_idcheck = DATA_PROVIDER.cursor.fetchone()
+        if form.validate_on_submit():
+            # Search for media based on the given search term
+            if form.search_btn.data:
+                sql_search = "CALL SearchMedia(%s)"
+                DATA_PROVIDER.cursor.execute(sql_search, form.search_term.data)
+                media = DATA_PROVIDER.cursor.fetchall()
 
-            if result_idcheck:
-                sql_delete = "DELETE FROM media WHERE media_id=%s;"
-                result_delete = DATA_PROVIDER.cursor.execute(sql_delete, media_id)
+            # Display media details for confirmation
+            elif form.delete.data:
+                sql_select = "SELECT * FROM media WHERE media_id=%s"
+                DATA_PROVIDER.cursor.execute(sql_select, [form.media_id.data])
+                media = DATA_PROVIDER.cursor.fetchone()
+                if not media:
+                    msg = 'Media not found.'
+                else:
+                    msg = 'Are you sure you want to delete this media?'
+                    form.confirm_delete.render_kw = {'onclick': 'return confirm("Are you sure?");'}
+
+            # Delete media based on the given media ID
+            elif form.confirm_delete.data:
+                sql_delete = "CALL DeleteMedia(%s)"
+                DATA_PROVIDER.cursor.execute(sql_delete, [form.media_id.data])
                 DATA_PROVIDER.conn.commit()
+                msg = "Media deleted."
 
-                if result_delete:
-                    msg = "Media successfully deleted!"
-            else:
-                msg = "Media ID not found, deletion not executed."
+    return render_template("admin_delete.html", form=form, message=msg, media=media)
 
-    return render_template("admin_delete.html", form=form, message=msg, data=sql_element_to_delete)
+# testing
+# def validate_media_id(self, media_id):
+#     sql_select = "SELECT * FROM media WHERE media_id=%s"
+#     DATA_PROVIDER.cursor.execute(sql_select, media_id.data)
+#     media = DATA_PROVIDER.cursor.fetchone()
+#     if not media:
+#         raise ValidationError('Media ID not found.')
+#
+#
+# def validate_search_term(self, search_term):
+#     sql_search = "CALL SearchMedia(%s)"
+#     DATA_PROVIDER.cursor.execute(sql_search, search_term.data)
+#     media = DATA_PROVIDER.cursor.fetchall()
+#     if not media:
+#         raise ValidationError('No media found for the given search term.')
 
+# if form.search_btn.data:
+#     print('Search button clicked')
+#     search_term = form.search_term.data
+#     sql_search = "CALL SearchMedia(%s)"
+#     print(sql_search % search_term)
+#     DATA_PROVIDER.cursor.execute(sql_search, [search_term])
+#     media = DATA_PROVIDER.cursor.fetchall()
 
 
 @app.route("/admin_viewddbb", methods=['GET', 'POST'])
@@ -263,3 +289,12 @@ def admin_viewddbb():
     sql_data = DATA_PROVIDER.cursor.fetchall()
     return render_template("admin_viewddbb.html", data=sql_data)
 
+
+@app.route("/admin_viewddbb/delete", methods=['POST'])
+def admin_viewddbb_delete():
+    media_id = request.form['media_id']
+    sql_query = "DELETE FROM media WHERE media_id = %s"
+    DATA_PROVIDER.cursor.execute(sql_query, (media_id,))
+    DATA_PROVIDER.conn.commit()
+    flash("Media deleted successfully", "success")
+    return redirect("/admin_viewddbb")

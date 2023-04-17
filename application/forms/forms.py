@@ -1,6 +1,6 @@
 from wtforms import SubmitField, StringField, SelectField
 from flask_wtf import FlaskForm
-from wtforms.validators import InputRequired
+from wtforms.validators import InputRequired, DataRequired, Length
 
 
 # inheritance
@@ -54,7 +54,9 @@ class AdminAddMedia(FlaskForm):
     submit_add = SubmitField("submit_add")
 
 
-class AdminDeleteMedia(FlaskForm):
-    media_id = StringField("media_id")
-    media_url = StringField("media_url")
-    submit_delete = SubmitField("submit_delete")
+class AdminDeleteMediaForm(FlaskForm):
+    search_term = StringField('Search term')
+    search_btn = SubmitField('Search', render_kw={"type": "submit"})  # Add the type attribute
+    media_id = StringField('Media ID', validators=[DataRequired(), Length(max=250)])
+    delete = SubmitField('Delete')
+    confirm_delete = SubmitField('Confirm Delete')

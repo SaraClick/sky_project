@@ -5,46 +5,49 @@
   <div class="ddbb_container">
 
     <div class="login_title">
-      <h1>DDBB view: Media</h1>
+      <h1>DDBB view: Delete Media</h1>
     </div>
 
-    <form action="/admin_viewddbb" method="POST">
-      <table class="table table-striped table-hover table_viewddbb">
-        <thead>
+    <table class="table table-striped table-hover table_viewddbb">
+      <thead>
+        <tr>
+          <th scope="col">Media ID</th>
+          <th scope="col">Title</th>
+          <th scope="col">SRC route</th>
+          <th scope="col">Type ID</th>
+          <th scope="col">Type</th>
+          <th scope="col">Source ID</th>
+          <th scope="col">Source</th>
+          <th scope="col">Category ID</th>
+          <th scope="col">Category</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+
+      <tbody class="table-group-divider">
+        {% for row in data %}
           <tr>
-            <th scope="col">Media ID</th>
-            <th scope="col">Title</th>
-            <th scope="col">SRC route</th>
-            <th scope="col">Type ID</th>
-            <th scope="col">Type</th>
-            <th scope="col">Source ID</th>
-            <th scope="col">Source</th>
-            <th scope="col">Category ID</th>
-            <th scope="col">Category</th>
+            <td class="table_row_text">{{ row[0] }}</td>
+            <td class="table_row_text">{{ row[1] }}</td>
+            <td class="table_row_text">{{ row[2] }}</td>
+            <td class="table_row_text">{{ row[3] }}</td>
+            <td class="table_row_text">{{ row[4] }}</td>
+            <td class="table_row_text">{{ row[5] }}</td>
+            <td class="table_row_text">{{ row[6] }}</td>
+            <td class="table_row_text">{{ row[7] }}</td>
+            <td class="table_row_text">{{ row[8] }}</td>
+            <td>
+              <form action="/admin_viewddbb/delete" method="POST">
+                <input type="hidden" name="media_id" value="{{ row[0] }}">
+                <button type="submit" class="btn btn-danger">Delete</button>
+              </form>
+            </td>
           </tr>
-        </thead>
-  
-        <tbody class="table-group-divider">
-                 {% for row in data%}
-            <tr>
-            <th class="table_row_text" scope="col">{{ row[0] }}</th>
-            <th class="table_row_text" scope="col">{{ row[1] }}</th>
-            <th class="table_row_text" scope="col">{{ row[2] }}</th>
-            <th class="table_row_text" scope="col">{{ row[3] }}</th>
-            <th class="table_row_text" scope="col">{{ row[4] }}</th>
-            <th class="table_row_text" scope="col">{{ row[5] }}</th>
-            <th class="table_row_text" scope="col">{{ row[6] }}</th>
-            <th class="table_row_text" scope="col">{{ row[7] }}</th>
-            <th class="table_row_text" scope="col">{{ row[8] }}</th>
-            </tr>
-            {% endfor %}
-      
-        </tbody>
-      </table>
-    </form>
+        {% endfor %}
+      </tbody>
+    </table>
+    
   </div>
 </div>
-
-
 
 {% endblock %}
