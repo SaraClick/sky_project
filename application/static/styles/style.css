@@ -262,13 +262,30 @@ footer {
 
 /* ======================================= CONTACT PAGE STYLES =======================================*/
 
-.contact-page .row {
-  display: flex;
-  flex-direction: column; /* change the direction of the flex container */
+/* Using the media query, the formatting is different when the page is above 99px or below. I've used 992px because I've noticed that's also the same aizing when our hamburger menu apprears on the navbar */
+@media screen and (max-width: 992px) {
+  .contact-page .row {
+    display: flex;
+    flex-direction: column; /* change the direction of the flex container */
+  }
+
+    .contact-page .card {
+        margin-top: 50px;
+      }
+
 }
 
-.contact-page .card {
-  margin-top: 50px;
+.card {
+  background-color: inherit;
+  border: none;
+}
+
+.card-body{
+  color: #74b2bc;
+}
+
+.card-subtitle {
+  color: #b4869f;
 }
 
 /*.contact-page .card-title, .address {
