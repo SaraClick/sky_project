@@ -404,13 +404,45 @@ footer {
   font-weight: normal;
 }
 
-/* How I solved the issue with the table going way above the webpage width: https: //stackoverflow.com/questions/13770928/table-inside-div-overflowing */
-#main_table_db {
-    overflow-x: scroll;
-      overflow-y: scroll;
-      max-height: 600px;
+/* Make the header of the table fixed so we alwas have the name of the column when scrolling down */
+/* Reference: https: //www.w3docs.com/snippets/html/how-to-create-a-table-with-a-fixed-header-and-scrollable-body.html */
+/* STARTS HERE */
+.tableFixHead {
+  overflow-y: auto;
+  /* make the table scrollable if height is more than 600 px  */
+  height: 600px;
+  /* make the table scrollable if the table is larger than the div */
+  /* Reference: https: //stackoverflow.com/questions/13770928/table-inside-div-overflowing */
+  overflow-x: scroll;
 }
 
+.tableFixHead thead th {
+  position: sticky;
+  /* make the table heads sticky */
+  top: 0px;
+  /* table head will be placed from the top of the table and sticks to it */
+  background-color:#cab1bd;
+}
+
+table {
+  border-collapse: collapse;
+  /* make the table borders collapse to each other */
+  width: 100%;
+}
+
+th,
+td {
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+}
+
+/* ENDS HERE */
+
+/* This is to align the header text vertically and horizontally */
+th {
+  text-align: center;
+  vertical-align: middle;
+}
 
 
 /* ======================================= BUTTON STYLING =======================================*/
