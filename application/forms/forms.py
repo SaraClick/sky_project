@@ -1,6 +1,6 @@
-from wtforms import SubmitField, StringField, SelectField
+from wtforms import SubmitField, StringField, SelectField, TextAreaField
 from flask_wtf import FlaskForm
-from wtforms.validators import InputRequired
+from wtforms.validators import InputRequired, ValidationError
 
 
 # inheritance
@@ -58,3 +58,18 @@ class AdminDeleteMedia(FlaskForm):
     media_id = StringField("media_id")
     media_url = StringField("media_url")
     submit_delete = SubmitField("submit_delete")
+
+
+class EmailFormat:
+    def __call__(self, form, field):
+        email = field.data
+        if '@' not in email or '.' not in email:
+            raise ValidationError('Invalid email format')
+
+
+class ContactForm(FlaskForm):
+    name = StringField('Name', validators=[InputRequired()])
+    surname = StringField('Surname', validators=[InputRequired()])
+    email = StringField('Email', validators=[InputRequired(), EmailFormat()])
+    message = TextAreaField('Message', validators=[InputRequired()])
+    submit = SubmitField('Submit')

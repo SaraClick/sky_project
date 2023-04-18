@@ -1,8 +1,8 @@
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, flash
 from application import app
 from application.python_scripts.data_provider_service import DataProviderService
 from application.forms.forms import TypeForm, CategoryForm, MediaOutputForm, AdminLandingForm, AdminLogin, \
-    AdminUpdateUrl, AdminAddMedia, AdminDeleteMedia
+    AdminUpdateUrl, AdminAddMedia, AdminDeleteMedia, ContactForm
 from random import choice
 
 DATA_PROVIDER = DataProviderService()
@@ -14,9 +14,36 @@ def home():
     return render_template("index.html")
 
 
-@app.route("/contact")
+# @app.route('/contact', methods=['GET', 'POST'])
+# def contact():
+#     form = ContactForm()
+#     if request.method == 'POST' and form.validate_on_submit():
+#         # Send email with form data
+#         return 'Thank you for contacting Forty Winks! Please expect a response in 3 to 5 days'
+#     return render_template('contact.html', form=form)
+
+
+@app.route("/contact", methods=['GET', 'POST'])
 def contact():
-    return render_template("contact.html")
+    form = ContactForm()
+
+    if request.method == 'POST' and form.validate_on_submit():
+        # Get form data
+        name = request.form['name']
+        surname = request.form['surname']
+        email = request.form['email']
+        message = request.form['message']
+
+        # Insert form data into DDBB
+        sql = "INSERT INTO contactform (name, surname, email, message) VALUES (%s, %s, %s, %s)"
+        val = (name, surname, email, message)
+        DATA_PROVIDER.cursor.execute(sql, val)
+        DATA_PROVIDER.conn.commit()
+
+        # Send email with form data
+        flash('Thank you for contacting Forty Winks! We aim to respond within 3 to 5 days.')
+
+    return render_template('contact.html', form=form)
 
 
 @app.route("/select_type", methods=['GET', 'POST'])
@@ -258,11 +285,9 @@ def admin_delete():
     return render_template("admin_delete.html", form=form, message=msg, data=sql_element_to_delete)
 
 
-
 @app.route("/admin_viewddbb", methods=['GET', 'POST'])
 def admin_viewddbb():
     sql_query = "SELECT media_id, media_title, media_url, type_id, type_name, source_id, source_name, category_id, category_name FROM vw_media ORDER BY media_id;"
     DATA_PROVIDER.cursor.execute(sql_query)
     sql_data = DATA_PROVIDER.cursor.fetchall()
     return render_template("admin_viewddbb.html", data=sql_data)
-
