@@ -402,7 +402,6 @@ footer {
 }
 
 
-<<<<<<< HEAD
 /* ======================================= TIPS STYLES =======================================*/
 
 .tips_title {
@@ -436,7 +435,6 @@ footer {
 /* This is to set the h2 button background colour when open */
 .accordion-button:not(.collapsed) {
   background: #ee6666;
-=======
 
 
 
@@ -459,7 +457,6 @@ button {
 button:active {
   transform: translateY(5px);
   box-shadow: 0px 0px 0px 0px #9e788f;
->>>>>>> main
 }
 
 
