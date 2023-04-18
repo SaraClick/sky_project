@@ -391,19 +391,22 @@ footer {
 
 .ddbb_container {
   padding-top: 5%;
+  width: inherit;
 }
 
 .table_viewddbb{
   background-color: #a6c6cb;
+  height: 80%;
+  
 }
 
 .table_row_text {
   font-weight: normal;
 }
 
-
-
-
+#main_table_db {
+    overflow-x: scroll;
+}
 
 /* ======================================= BUTTON STYLING =======================================*/
 /* https://uiverse.io/krlozCJ/blue-dodo-17 */
