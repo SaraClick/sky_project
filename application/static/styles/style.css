@@ -404,9 +404,12 @@ footer {
   font-weight: normal;
 }
 
+/* How I solved the issue with the table going way above the webpage width: https: //stackoverflow.com/questions/13770928/table-inside-div-overflowing */
 #main_table_db {
     overflow-x: scroll;
 }
+
+
 
 /* ======================================= BUTTON STYLING =======================================*/
 /* https://uiverse.io/krlozCJ/blue-dodo-17 */
