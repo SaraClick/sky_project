@@ -308,3 +308,41 @@ footer {
 .table_row_text {
   font-weight: normal;
 }
+
+
+/* ======================================= TIPS STYLES =======================================*/
+
+.tips_title {
+  text-align: center;
+  padding-bottom: 5%;
+  padding-top: 5%;
+}
+
+/* This is to set the main article background colour, it will only show when open*/
+.accordion-item {
+  background-color: #d8c7cf;
+   
+}
+
+.accordion-button {
+  background-color: #a6c6cb;
+}
+
+.accordion {
+  padding-left: 20%;
+  padding-right: 20%;
+  padding-top: 10%;
+  text-align: center;
+}
+
+/* This is to set the h2 button background colour when closed */
+.accordion-button.collapsed {
+  background: #9c66ee;
+}
+
+/* This is to set the h2 button background colour when open */
+.accordion-button:not(.collapsed) {
+  background: #ee6666;
+}
+
+
