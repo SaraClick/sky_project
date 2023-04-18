@@ -77,10 +77,20 @@ footer {
 
 /* ======================================= HOME PAGE STYLES =======================================*/
 
+.carousel-inner{
+  padding-left: 20%;
+  padding-right: 20%;
+  width:100%;
+}
 
+/* .carousel-item{
+  color:#096372; */
 
+/* } */
+.carousel-caption{
+  color: blue;
 
-
+}
 
 /* ======================================= CONTENT SELECTION PAGE STYLES =======================================*/
 
