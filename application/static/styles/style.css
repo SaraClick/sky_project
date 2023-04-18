@@ -407,6 +407,8 @@ footer {
 /* How I solved the issue with the table going way above the webpage width: https: //stackoverflow.com/questions/13770928/table-inside-div-overflowing */
 #main_table_db {
     overflow-x: scroll;
+      overflow-y: scroll;
+      max-height: 600px;
 }
 
 
