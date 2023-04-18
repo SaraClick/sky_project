@@ -40,22 +40,25 @@
         <!-- Div containing the different items of the navbar-->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <!-- unordered list containing the name of all the tabs to show in the navbar-->
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="/home">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="/select_type">Media</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="/tips">Tips</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="/contact">Contact</a>
-            <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="/admin_login">Admin Login</a>
-            </li>
+
+          <!--This JINJA code is checking the href, if and caption of the tuples in the list and checking if the
+          page id matches. If the HTML is not set to active_page, the nav_bar will show normal, otherwise the active
+          page name on the navbar will show different style-->
+          {% set navigation_bar = [
+          ('/home', 'home', 'Home'),
+          ('/select_type', 'media', 'Media'),
+          ('/tips', 'tips', 'Tips'),
+          ('/contact', 'contact', 'Contact')
+          ] -%}
+          {% set active_page = active_page|default('home') -%}
+        
+          <ul id="navigation" class="navbar-nav me-auto mb-2 mb-lg-0">
+            {% for href, id, caption in navigation_bar %}
+            <li {% if id==active_page %} class="navbar_active nav-item navbar_li" {% else %} class="nav-item navbar_li" {% endif %}>
+              <a class="nav-link" aria-current="page" href="{{ href|e }}">{{ caption|e }}</a></li>
+              {% endfor %}
           </ul>
+          
         </div>
       </div>
     </nav>
@@ -66,7 +69,7 @@
 
     </main>
 
-    <!-- Basic footer structure from Bootstram + team tweaks-->
+    <!-- Basic footer structure from Bootstrap + team tweaks-->
     <div id="footer_main_container">
       <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4">
         <div class="col-md-4 d-flex align-items-center">

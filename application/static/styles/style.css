@@ -25,6 +25,7 @@ html {
   min-height: 100%;
 }
 
+
 /* ======================================= NAVBAR STYLES =======================================*/
 
 /*Sets the size of the image within the navbar*/
@@ -35,20 +36,46 @@ html {
 .navbar_main_container {
   background-color: #99bec6;
   /*z-index:500 is needed so the navbar goes on top of the main content when hamburger menu is expanded https: //stackoverflow.com/questions/30997510/body-text-goes-over-the-top-of-fixed-nav-bar*/
-  z-index: 500
+  z-index: 500;
 }
 
 .navbar {
 --bs-navbar-padding-y: 0rem;
 font-family: 'Nova Round', cursive; 
 /*font-style: italic;*/
-font-size:large;
+font-size: larger;
+vertical-align: central;
+align-items: center;
+
+text-align: center;
 }
 
 .navbar-nav a { 
   color: #034854;
   font-weight:bolder;
 }
+
+.navbar_active a{
+  color: #9d5b83;
+}
+
+.navbar_active a:hover {
+  color: #e2d1d9;
+}
+
+.navbar-nav a:hover {
+  color: #9e788f;
+}
+
+.navbar_li {
+  padding-right: 10%;
+  align-content: center;
+}
+
+.logout {
+  margin-top: 0.25rem;
+}
+
 
 
 /* ======================================= FOOTER STYLES =======================================*/
@@ -136,6 +163,14 @@ footer {
   height: 100px;
 }
 
+@media screen and (min-width: 800px) {
+  .content_title {
+      /* border: 4px solid rgb(0, 13, 255); */
+      padding-top: 8%;
+      padding-bottom: 2%;
+      text-align: center;
+    }
+}
 
 /* ======================================= CONTENT MEDIA PAGE STYLES =======================================*/
 .select_another_media_button {
@@ -260,7 +295,51 @@ footer {
 
 /* ======================================= CONTACT PAGE STYLES =======================================*/
 
+/* ======================================= CONTACT PAGE STYLES =======================================*/
 
+/* Using the media query, the formatting is different when the page is above 99px or below. I've used 992px because I've noticed that's also the same aizing when our hamburger menu apprears on the navbar */
+@media screen and (max-width: 992px) {
+  .contact-page .row {
+    display: flex;
+    flex-direction: column;
+    /* change the direction of the flex container */
+  }
+
+  .contact-page .card {
+    margin-top: 50px;
+  }
+
+}
+
+.card {
+  background-color: inherit;
+  border: none;
+}
+
+.card-body {
+  color: #74b2bc;
+}
+
+.card-subtitle {
+  color: #b4869f;
+}
+
+.form-control {
+  background-color: #99bec6;
+  ;
+
+}
+
+.form-label-contact {
+  color: #cab1bd;
+  font-family: 'Nova Round', cursive;
+  font-weight: bold;
+}
+
+/*.contact-page .card-title, .address {
+  font-family: 'Nova Round', cursive;
+  font-size: 18px;
+}*/
 
 /* ======================================= ADMIN LOGIN =======================================*/
 
@@ -282,6 +361,19 @@ footer {
   padding-bottom: 5%;
 }
 
+@media screen and (max-width: 800px) {
+  .login_container {
+      padding-left: 8%;
+      padding-right: 8%;
+      padding-top: 20%;
+    }
+  
+    .admin_login_form {
+      padding-left: 5%;
+      padding-right: 5%;
+  
+    }
+  }
 
 /* ======================================= ADMIN UPDATE =======================================*/
 
@@ -310,6 +402,7 @@ footer {
 }
 
 
+<<<<<<< HEAD
 /* ======================================= TIPS STYLES =======================================*/
 
 .tips_title {
@@ -343,6 +436,30 @@ footer {
 /* This is to set the h2 button background colour when open */
 .accordion-button:not(.collapsed) {
   background: #ee6666;
+=======
+
+
+
+/* ======================================= BUTTON STYLING =======================================*/
+/* https://uiverse.io/krlozCJ/blue-dodo-17 */
+
+button {
+  border: none;
+  outline: none;
+  background-color: #ae869f;
+  padding: 10px 20px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  border-radius: 5px;
+  transition: all ease 0.1s;
+  box-shadow: 0px 5px 0px 0px #9e788f;
+}
+
+button:active {
+  transform: translateY(5px);
+  box-shadow: 0px 0px 0px 0px #9e788f;
+>>>>>>> main
 }
 
 
