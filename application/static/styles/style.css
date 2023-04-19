@@ -103,6 +103,7 @@ footer {
 }
 
 /* ======================================= HOME PAGE STYLES =======================================*/
+/* carousel } */
 
 .carousel-inner{
   padding-left: 20%;
@@ -110,14 +111,88 @@ footer {
   width:100%;
 }
 
-/* .carousel-item{
-  color:#096372; */
+.slide_one_text{
+  color: transparent;
+  background-image: linear-gradient(180deg, #ead3ee, #0dea95, #0c968d, #067520);
 
-/* } */
-.carousel-caption{
-  color: blue;
+  /* background-image: linear-gradient(360deg, #ead3ee, #ea0dd1, #25d3b3, #094afb); */
+  /* background-image: linear-gradient(180deg, #ead3ee, #0dea95, #0c968d, #067520); */
 
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-stroke: 0.2px rgb(0, 0, 0);
+ 
 }
+
+.slide_two_text{
+  color: transparent;
+  background-image: linear-gradient(360deg, #ead3ee, #ea0dd1, #25d3b3, #094afb);
+
+  /* background-image: linear-gradient(360deg, #ead3ee, #ea0dd1, #25d3b3, #094afb); */
+
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-stroke: 0.2px rgb(0, 0, 0);
+}
+
+.slide_three_text{
+  color: transparent;
+  background-image: linear-gradient(360deg, #ead3ee, #ea0dd1, #25d3b3, #094afb);
+
+  /* background-image: linear-gradient(360deg, #ead3ee, #ea0dd1, #25d3b3, #094afb); */
+
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-stroke: 0.2px rgb(0, 0, 0);
+}
+/* .carousel-control-prev{
+  background-image: linear-gradient(360deg, #ead3ee, #ec66cb, #ed53c4, #e91276);
+  transition: 0.8s;
+  background-image:
+  radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+  radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+  radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px),
+  radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 30px);
+  background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px; 
+  background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
+}
+
+.carousel-control-next{
+  background-image: linear-gradient(360deg, #ead3ee, #ec66cb, #ed53c4, #e91276);
+  transition: 0.8s; 
+  background-color:#034854;
+  background-image:
+  radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+  radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+  radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px),
+  radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 30px);
+  background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px; 
+  background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
+} */
+
+#link_button {
+    border: none;
+    outline: none;
+    background-color: #ae869f;
+    padding: 10px 20px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    border-radius: 5px;
+    transition: all ease 0.1s;
+    box-shadow: 0px 5px 0px 0px #9e788f;
+  }
+  
+  #link_button:active {
+    transform: translateY(5px);
+    box-shadow: 0px 0px 0px 0px #9e788f;
+  }
+  
+  /* #HP_headings{
+    italic
+   
+  } */
+
 
 /* ======================================= CONTENT SELECTION PAGE STYLES =======================================*/
 
