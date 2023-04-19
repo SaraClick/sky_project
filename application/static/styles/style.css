@@ -113,62 +113,27 @@ footer {
 
 .slide_one_text{
   color: transparent;
-  background-image: linear-gradient(180deg, #ead3ee, #0dea95, #0c968d, #067520);
-
-  /* background-image: linear-gradient(360deg, #ead3ee, #ea0dd1, #25d3b3, #094afb); */
-  /* background-image: linear-gradient(180deg, #ead3ee, #0dea95, #0c968d, #067520); */
-
+  background-image: linear-gradient(360deg, #ead3ee, #ea0dd1, #25d3b3, #094afb);
   background-clip: text;
   -webkit-background-clip: text;
-  -webkit-text-stroke: 0.2px rgb(0, 0, 0);
- 
+  -webkit-text-stroke: 1px rgb(0, 0, 0);
 }
 
 .slide_two_text{
   color: transparent;
   background-image: linear-gradient(360deg, #ead3ee, #ea0dd1, #25d3b3, #094afb);
-
-  /* background-image: linear-gradient(360deg, #ead3ee, #ea0dd1, #25d3b3, #094afb); */
-
   background-clip: text;
   -webkit-background-clip: text;
-  -webkit-text-stroke: 0.2px rgb(0, 0, 0);
+  -webkit-text-stroke: 1px rgb(0, 0, 0);
 }
 
 .slide_three_text{
   color: transparent;
   background-image: linear-gradient(360deg, #ead3ee, #ea0dd1, #25d3b3, #094afb);
-
-  /* background-image: linear-gradient(360deg, #ead3ee, #ea0dd1, #25d3b3, #094afb); */
-
   background-clip: text;
   -webkit-background-clip: text;
-  -webkit-text-stroke: 0.2px rgb(0, 0, 0);
+  -webkit-text-stroke: 1px rgb(0, 0, 0);
 }
-/* .carousel-control-prev{
-  background-image: linear-gradient(360deg, #ead3ee, #ec66cb, #ed53c4, #e91276);
-  transition: 0.8s;
-  background-image:
-  radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
-  radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
-  radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px),
-  radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 30px);
-  background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px; 
-  background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
-}
-
-.carousel-control-next{
-  background-image: linear-gradient(360deg, #ead3ee, #ec66cb, #ed53c4, #e91276);
-  transition: 0.8s; 
-  background-color:#034854;
-  background-image:
-  radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
-  radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
-  radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px),
-  radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 30px);
-  background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px; 
-  background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
-} */
 
 #link_button {
     border: none;
@@ -187,18 +152,17 @@ footer {
     transform: translateY(5px);
     box-shadow: 0px 0px 0px 0px #9e788f;
   }
-  
-  /* #HP_headings{
-    italic
-   
-  } */
 
   /* This is to remove the pinkish shadow/border from the buttons applied accross the website */
   .carousel-button-styles {
    box-shadow: none;
   }
 
-  
+  .sheep_counter {pointer-events: none;}
+
+#wink_emoji{
+  font-style:normal;
+}
 /* ======================================= CONTENT SELECTION PAGE STYLES =======================================*/
 
 .content_title {
