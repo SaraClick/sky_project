@@ -410,6 +410,11 @@ footer {
   padding-top: 5%;
 }
 
+/*.left-align {
+    text-align: left;
+}*/
+
+
 /* This is to set the main article background colour, it will only show when open*/
 .accordion-item {
   background-color: #d8c7cf;
