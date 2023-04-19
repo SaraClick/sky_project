@@ -193,7 +193,12 @@ footer {
    
   } */
 
+  /* This is to remove the pinkish shadow/border from the buttons applied accross the website */
+  .carousel-button-styles {
+   box-shadow: none;
+  }
 
+  
 /* ======================================= CONTENT SELECTION PAGE STYLES =======================================*/
 
 .content_title {
@@ -377,8 +382,6 @@ footer {
 }
 
 
-
-/* ======================================= CONTACT PAGE STYLES =======================================*/
 
 /* ======================================= CONTACT PAGE STYLES =======================================*/
 
