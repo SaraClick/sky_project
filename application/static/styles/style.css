@@ -160,9 +160,9 @@ footer {
 
   .sheep_counter {pointer-events: none;}
 
-#wink_emoji{
-  font-style:normal;
-}
+  #wink_emoji{
+    font-style:normal;
+  }
 /* ======================================= CONTENT SELECTION PAGE STYLES =======================================*/
 
 .content_title {
