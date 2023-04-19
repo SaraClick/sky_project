@@ -194,6 +194,12 @@ footer {
     }
 }
 
+.title_first_featurette {
+  padding-top: 7%;
+  color: #b26d96;
+  font-weight: bold;
+}
+
 /* ======================================= CONTENT SELECTION PAGE STYLES =======================================*/
 
 .content_title {
