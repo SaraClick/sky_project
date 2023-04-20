@@ -406,14 +406,15 @@ footer {
 
 .tips_title {
   text-align: center;
-  padding-bottom: 5%;
-  padding-top: 5%;
+  padding-top: 3%;
 }
 
 /*.left-align {
     text-align: left;
 }*/
-
+.accordion-body {
+  text-align: left;
+}
 
 /* This is to set the main article background colour, it will only show when open*/
 .accordion-item {
@@ -428,8 +429,23 @@ footer {
 .accordion {
   padding-left: 20%;
   padding-right: 20%;
-  padding-top: 10%;
+  padding-top: 3%;
   text-align: center;
+}
+
+@media screen and (max-width: 1000px) {
+  .accordion {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  .tips_title {
+    padding-top: 10%;
+  }
+}
+
+.accordion-header {
+  font-size:x-large;
 }
 
 /* This is to set the h2 button background colour when closed */
@@ -443,6 +459,16 @@ footer {
 }
  
 
+.sleepy-dino {
+  background-color: inherit;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.sleepy-dino iframe {
+  max-height: 130px;
+}
 
 
 /* ======================================= BUTTON STYLING =======================================*/
