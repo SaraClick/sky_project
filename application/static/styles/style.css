@@ -113,6 +113,12 @@ footer {
 
 
 .slide_one_text{
+  /* color:#1e105c;
+  -webkit-background-clip: text;
+  -webkit-text-stroke: 1px #cab1bd;
+  font-family:Arial, Helvetica, sans-serif;
+  font-weight: bolder; */
+
   color: transparent;
   background-image: linear-gradient(360deg, #ead3ee, #ea0dd1, #25d3b3, #094afb);
   background-clip: text;
@@ -148,6 +154,7 @@ footer {
     transition: all ease 0.1s;
     box-shadow: 0px 5px 0px 0px #9e788f;
   }
+
   
 #link_button:active {
   transform: translateY(5px);
@@ -157,7 +164,6 @@ footer {
 /* This is to remove the pinkish shadow/border from the buttons applied accross the website */
 .carousel-button-styles {
   box-shadow: none;
-
 }
 
 .title_first_featurette {
@@ -187,12 +193,11 @@ footer {
 }
 
 
-
 @media screen and (max-width: 600px) {
   .carousel-inner img {
     height: 225px;
   }
-}
+} 
 
 @media screen and (max-width: 900px) {
   .featurette-image {
@@ -219,6 +224,10 @@ footer {
     width: 100%;
   }
 }
+
+
+ 
+
 
 
 
