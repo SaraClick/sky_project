@@ -253,41 +253,19 @@ def admin_add():
     return render_template("admin_add.html", form=form, message=msg)
 
 
-@app.route("/admin_delete", methods=['GET', 'POST'])
-def admin_delete():
-    form = AdminDeleteMedia()
-    msg = ''
-    sql_element_to_delete = None
-
-    if request.method == 'POST':
-        try:
-            # Try block to check that media ID has been provided
-            media_id = int(request.form['media_id'])
-        except ValueError:
-            # Except block to catch the Value Error when no data is provided
-            msg = "Deletion not executed, provide a valid ID."
-        else:
-            # Else block to execute whenever there is no errors (aka when ID has been provided)
-            sql_idcheck = "SELECT media_id FROM media WHERE media_id=%s;"
-            DATA_PROVIDER.cursor.execute(sql_idcheck, media_id)
-            result_idcheck = DATA_PROVIDER.cursor.fetchone()
-
-            if result_idcheck:
-                sql_delete = "DELETE FROM media WHERE media_id=%s;"
-                result_delete = DATA_PROVIDER.cursor.execute(sql_delete, media_id)
-                DATA_PROVIDER.conn.commit()
-
-                if result_delete:
-                    msg = "Media successfully deleted!"
-            else:
-                msg = "Media ID not found, deletion not executed."
-
-    return render_template("admin_delete.html", form=form, message=msg, data=sql_element_to_delete)
-
-
 @app.route("/admin_viewddbb", methods=['GET', 'POST'])
 def admin_viewddbb():
     sql_query = "SELECT media_id, media_title, media_url, type_id, type_name, source_id, source_name, category_id, category_name FROM vw_media ORDER BY media_id;"
     DATA_PROVIDER.cursor.execute(sql_query)
     sql_data = DATA_PROVIDER.cursor.fetchall()
     return render_template("admin_viewddbb.html", data=sql_data)
+
+
+@app.route("/admin_viewddbb/delete", methods=['POST'])
+def admin_viewddbb_delete():
+    media_id = request.form['media_id']
+    sql_query = "DELETE FROM media WHERE media_id = %s"
+    DATA_PROVIDER.cursor.execute(sql_query, (media_id,))
+    DATA_PROVIDER.conn.commit()
+    flash("Media deleted successfully", "success")
+    return redirect("/admin_viewddbb")
