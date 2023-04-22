@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% set active_page = "contact" %}
+{% block main_content %}
+
+<div class="container">
+  <h1 class="text-center mb-5 tips_title">Thank you for your Email !</h1>
+
+  <p class="text-center">Our aim is to respond all emails within 5-7 working days.</p>
+  <p class="text-center">Expect to hear from us very soon !</p>
+
+  <div id="send_email_container" class="text-center">
+    <iframe id="sent_email_gif" src="https://giphy.com/embed/OUw5K9WtTQNOWDOvZq" width="100%" height="100%" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+
+
+  <form action="/contact" class="go_back">
+    <button type="submit" class="btn btn-primary submit_button_form">Go Back</button>
+  </form>
+  </div>
+
+</div>
+{% endblock %}
+    

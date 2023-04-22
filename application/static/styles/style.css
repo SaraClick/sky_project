@@ -465,6 +465,25 @@ footer {
   font-size: 18px;
 }*/
 
+#sent_email_container {
+    width:100%;
+    height:0;
+    padding-bottom:50%;
+      display: flex;
+        justify-content: center;
+        pointer-events: none;
+}
+
+#sent_email_gif {
+  background-color: inherit;
+  max-width: 400px;
+}
+
+.go_back {
+  padding-top: 50px;
+}
+
+
 /* ======================================= ADMIN LOGIN =======================================*/
 
 .login_container {
@@ -509,6 +528,12 @@ footer {
 
 /* ======================================= ADMIN DELETE =======================================*/
 
+#email-gif {
+  background-color: inherit;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
 
 
 /* ======================================= ADMIN VIEW DDBB =======================================*/

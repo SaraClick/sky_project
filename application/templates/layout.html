@@ -46,6 +46,9 @@
           <!--This JINJA code is checking the href, if and caption of the tuples in the list and checking if the
           page id matches. If the HTML is not set to active_page, the nav_bar will show normal, otherwise the active
           page name on the navbar will show different style-->
+
+          <!-- The navigation_bar list is a tuple formed by all pages to be linked on the navigation bar containing
+           the data for (href, id, caption text to be shown) -->
           {% set navigation_bar = [
           ('/home', 'home', 'Home'),
           ('/select_type', 'media', 'Media'),

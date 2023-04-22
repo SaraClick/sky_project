@@ -4,69 +4,93 @@
 
 <div class="contact-page">
 
-<div class="container" id="table_container">
-  <div class="content_title">
-    <h1>Contact Us</h1>
-  </div>
+  <div class="container" id="table_container">
 
-  <!-- grid container added so the class row and column is applied from Bootstrap -->
-  <div class="grid text-center icons_container">
-    <div class="row">
-      <div class="col">
-        <h3>Send us a message:</h3>
-        <form method="POST">
-          {{ form.hidden_tag() }}
-          <div class="mb-3">
-            <label for="name" class="form-label form-label-contact">Name:</label>
-            <input type="text" class="form-control" id="name" name="name" required>
-          </div>
-          <div class="mb-3">
-            <label for="surname" class="form-label form-label-contact">Surname:</label>
-            <input type="text" class="form-control" id="surname" name="surname" required>
-          </div>
-          <div class="mb-3">
-            <label for="email" class="form-label form-label-contact">Email:</label>
-            <input type="email" class="form-control" id="email" name="email" required>
-          </div>
-          <div class="mb-3">
-            <label for="message" class="form-label form-label-contact">Message:</label>
-            <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary submit_button_form">Send Message</button>
-        </form>
-        {% with messages = get_flashed_messages() %}
-          {% if messages %}
-            {% for message in messages %}
-              <div class="alert alert-success" role="alert">{{ message }}</div>
-            {% endfor %}
-          {% endif %}
-        {% endwith %}
-      </div>
+    <div class="content_title">
+      <h1>Contact Us</h1>
+    </div>
 
-      <div class="col">
-        <div class="card">
-          <h3>Where to find us?</h3>
-          <div class="card-body">
-            <h5 class="card-title">Contact Information</h5>
-            <h6 class="card-subtitle mb-2">FortyWinks</h6>
-            <p class="card-text">
-              Email: admin@fortywinks.com <br>
-              Address: Forty Winks, Sky Osterley, London (Sky Group headquarters), Grant Way, Isleworth, TW7 5QD, United Kingdom <br>
-            </p>
-            <div class="mapouter">
-              <div class="gmap_canvas">
-                <iframe width="300" height="250" id="gmap_canvas"
-                  src="https://maps.google.com/maps?q=Sky%20Osterley.%20London%20(Sky%20Group%20headquarters)%20Grant%20Way,%20Isleworth,%20TW7%205QD,%20United%20Kingdom&t=&z=11&ie=UTF8&iwloc=&output=embed"
-                  frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+    <!-- *************** CONTACT FORM *************** -->
+    <!-- grid container added so the class row and column is applied from Bootstrap -->
+    <div class="grid text-center icons_container">
+      <div class="row">
+        <div class="col">
+          <h3>Send us a message:</h3>
+          <!-- Action element is from the documentation : https://formsubmit.co/ -->
+          <!-- Tutorial reference for sending the email: https://www.youtube.com/watch?v=r4RQ38EoLds -->
+          <form action="https://formsubmit.co/fortywinks2023@gmail.com" method="POST">
+            {{ form.hidden_tag() }}
+            <!-- The subject is hidden to the user. This is to help the business identify the email received
+            is from the contact form on the website.-->
+            <input type="hidden" name="_subject" value="New Enquiry from Website Contact Form">
+            <!-- the below removes the CAPTCHA -->
+            <input type="hidden" name="_captcha" value="false">
+            <!-- This is to redirect to the thank you page when message sent -->
+            <input type="hidden" name="_next" value="{{base_url}}/thanks">
+
+            <div class="mb-3">
+              <label for="name" class="form-label form-label-contact">Name:</label>
+              <input type="text" class="form-control" id="name" name="name" placeholder="Your name" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="surname" class="form-label form-label-contact">Surname:</label>
+              <input type="text" class="form-control" id="surname" name="surname" placeholder="Your surname" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="email" class="form-label form-label-contact">Email:</label>
+              <input type="email" class="form-control" id="email" name="email" placeholder="Your email" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="message" class="form-label form-label-contact">Message:</label>
+              <textarea class="form-control" id="message" name="message" rows="5" placeholder="Write your message here" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary submit_button_form">Send Message</button>
+          </form>
+
+          {% with messages = get_flashed_messages() %}
+            {% if messages %}
+              {% for message in messages %}
+                <div class="alert alert-success" role="alert">{{ message }}</div>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+
+        </div>
+
+        <!-- *************** CONTACT INFO *************** -->
+        <div class="col">
+          <div class="card">
+            <h3>Where to find us?</h3>
+
+            <div class="card-body">
+              <h5 class="card-title">Contact Information</h5>
+              <h6 class="card-subtitle mb-2">FortyWinks</h6>
+
+              <p class="card-text">
+                Email: admin@fortywinks.com <br>
+                Address: Forty Winks, Sky Osterley, London (Sky Group headquarters), Grant Way, Isleworth, TW7 5QD, United Kingdom <br>
+              </p>
+
+              <div class="mapouter">
+                <div class="gmap_canvas">
+                  <iframe width="300" height="250" id="gmap_canvas"
+                    src="https://maps.google.com/maps?q=Sky%20Osterley.%20London%20(Sky%20Group%20headquarters)%20Grant%20Way,%20Isleworth,%20TW7%205QD,%20United%20Kingdom&t=&z=11&ie=UTF8&iwloc=&output=embed"
+                    frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                </div>
               </div>
+
             </div>
           </div>
         </div>
+
       </div>
     </div>
-  </div>
 
-</div>
+  </div>
 </div>
 
 {% endblock %}

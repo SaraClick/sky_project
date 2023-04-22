@@ -14,38 +14,6 @@ def home():
     return render_template("index.html")
 
 
-# @app.route('/contact', methods=['GET', 'POST'])
-# def contact():
-#     form = ContactForm()
-#     if request.method == 'POST' and form.validate_on_submit():
-#         # Send email with form data
-#         return 'Thank you for contacting Forty Winks! Please expect a response in 3 to 5 days'
-#     return render_template('contact.html', form=form)
-
-
-@app.route("/contact", methods=['GET', 'POST'])
-def contact():
-    form = ContactForm()
-
-    if request.method == 'POST' and form.validate_on_submit():
-        # Get form data
-        name = request.form['name']
-        surname = request.form['surname']
-        email = request.form['email']
-        message = request.form['message']
-
-        # Insert form data into DDBB
-        sql = "INSERT INTO contactform (name, surname, email, message) VALUES (%s, %s, %s, %s)"
-        val = (name, surname, email, message)
-        DATA_PROVIDER.cursor.execute(sql, val)
-        DATA_PROVIDER.conn.commit()
-
-        # Send email with form data
-        flash('Thank you for contacting Forty Winks! We aim to respond within 3 to 5 days.')
-
-    return render_template('contact.html', form=form)
-
-
 @app.route("/select_type", methods=['GET', 'POST'])
 def content_selection_type():
     user_type = None  # empty variable to store the user's type selection
@@ -122,15 +90,43 @@ def content_media():
     return render_template("content_media.html", user_type=user_type1, media_url=selected_url, form=form)
 
 
+@app.route("/contact", methods=['GET', 'POST'])
+def contact():
+    form = ContactForm()
+
+    # base_url is needed so we can pass it when the email is sent to render the thank you page
+    base_url = request.base_url
+
+
+    if request.method == 'POST' and form.validate_on_submit():
+        # Get form data
+        name = request.form['name']
+        surname = request.form['surname']
+        email = request.form['email']
+        message = request.form['message']
+
+        # Insert form data into DDBB
+        sql = "INSERT INTO contactform (name, surname, email, message) VALUES (%s, %s, %s, %s)"
+        val = (name, surname, email, message)
+        DATA_PROVIDER.cursor.execute(sql, val)
+        DATA_PROVIDER.conn.commit()
+
+        # Send email message
+        flash('Thank you for contacting Forty Winks! We aim to respond within 3 to 5 days.')
+
+    return render_template('contact.html', form=form, base_url=base_url)
+
+
+@app.route("/contact/thanks")
+def thanks():
+    return render_template("thanks.html")
+
 @app.route("/tips")
 def tips():
     return render_template("tips.html")
 
 
-# @app.route("/admin_login")
-# def admin_login():
-#     return render_template("admin_login.html")
-
+# ************************************************* ADMIN SECTION *************************************************
 
 @app.route("/admin_login", methods=['GET', 'POST'])
 def admin_login():
