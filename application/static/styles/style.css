@@ -504,16 +504,74 @@ footer {
   padding-bottom: 5%;
 }
 
-@media screen and (max-width: 800px) {
-  .login_container {
-      padding-left: 8%;
-      padding-right: 8%;
-      padding-top: 20%;
+/* @media screen and (max-width: 800px) { */
+.login_container {
+  padding-left: 8%;
+  padding-right: 8%;
+  padding-top: 20%;
+  display: flex;
+  content: '';
+  justify-content: center;
+/* flex makes text next to eachother */
+  align-items: center;
+  position: relative;
+  width: 400px;
+  height: 470px;
+  background: #040717;
+  border-radius: 50px 5px;
+  overflow: hidden;
+  margin-top: 70px;
+}
+
+.login_container::before{
+  position: absolute;
+  width: 170%;
+  height: 170%;
+  content: '';
+  background-image: conic-gradient(transparent);
+  animation: rotate_border 6s linear infinite;
+
+}
+
+.login_container::after{
+  position: absolute;
+  width: 170%;
+  height: 170%;
+  content: '';
+  background-image: conic-gradient(transparent);
+  animation: rotate_border 6s linear infinite;
+}
+
+      /* 
+      justify-content: centre;
+      overflow: hidden;
+        animation-delay: -3s;  
+      */
+
+      
+
+  @keyframes rotate_border{
+    0%{
+      transform: rotate(0deg);
     }
+    100%{
+      transform: rotate(360deg);
+    }
+
+
+  }
   
     .admin_login_form {
       padding-left: 5%;
       padding-right: 5%;
+      position: absolute;
+      content: '';
+      background-color: #0c1022;
+      border-radius: 50px 5px;
+      inset: 5px;
+      padding: 50px 40px;
+      z-index: 10;
+      color: #00ccff;
   
     }
   }
@@ -660,8 +718,7 @@ th {
 
 .sleepy-dino iframe {
   max-height: 130px;}
-  
-
+ 
 
 /* ======================================= BUTTON STYLING =======================================*/
 /* https://uiverse.io/krlozCJ/blue-dodo-17 */
