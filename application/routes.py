@@ -97,23 +97,6 @@ def contact():
     # base_url is needed so we can pass it when the email is sent to render the thank you page
     base_url = request.base_url
 
-
-    if request.method == 'POST' and form.validate_on_submit():
-        # Get form data
-        name = request.form['name']
-        surname = request.form['surname']
-        email = request.form['email']
-        message = request.form['message']
-
-        # Insert form data into DDBB
-        sql = "INSERT INTO contactform (name, surname, email, message) VALUES (%s, %s, %s, %s)"
-        val = (name, surname, email, message)
-        DATA_PROVIDER.cursor.execute(sql, val)
-        DATA_PROVIDER.conn.commit()
-
-        # Send email message
-        flash('Thank you for contacting Forty Winks! We aim to respond within 3 to 5 days.')
-
     return render_template('contact.html', form=form, base_url=base_url)
 
 
