@@ -486,18 +486,6 @@ footer {
 
 /* ======================================= ADMIN LOGIN =======================================*/
 
-.login_container {
-  padding-left: 20%;
-  padding-right: 20%;
-  padding-top: 10%;
-}
-
-
-.admin_login_form {
-  padding-left: 20%;
-  padding-right: 20%;
-
-}
 
 .login_title {
   text-align: center;
@@ -506,9 +494,9 @@ footer {
 
 /* @media screen and (max-width: 800px) { */
 .login_container {
-  padding-left: 8%;
-  padding-right: 8%;
-  padding-top: 20%;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-top: 10%;
   display: flex;
   content: '';
   justify-content: center;
@@ -520,7 +508,7 @@ footer {
   background: #040717;
   border-radius: 50px 5px;
   overflow: hidden;
-  margin-top: 70px;
+  /* margin-top: 70px; */
 }
 
 .login_container::before{
@@ -528,7 +516,7 @@ footer {
   width: 170%;
   height: 170%;
   content: '';
-  background-image: conic-gradient(transparent);
+  background-image: conic-gradient( #ea0dd1, #25d3b3, #094afb);
   animation: rotate_border 6s linear infinite;
 
 }
@@ -538,16 +526,9 @@ footer {
   width: 170%;
   height: 170%;
   content: '';
-  background-image: conic-gradient(transparent);
+  background-image: conic-gradient( #ea0dd1, #25d3b3, #9609fb);
   animation: rotate_border 6s linear infinite;
 }
-
-      /* 
-      justify-content: centre;
-      overflow: hidden;
-        animation-delay: -3s;  
-      */
-
       
 
   @keyframes rotate_border{
@@ -557,24 +538,21 @@ footer {
     100%{
       transform: rotate(360deg);
     }
-
-
   }
   
-    .admin_login_form {
-      padding-left: 5%;
-      padding-right: 5%;
-      position: absolute;
-      content: '';
-      background-color: #0c1022;
-      border-radius: 50px 5px;
-      inset: 5px;
-      padding: 50px 40px;
-      z-index: 10;
-      color: #00ccff;
-  
-    }
+  .admin_login_form {
+    padding-left: 5%;
+    padding-right: 5%;
+    position: absolute;
+    content: '';
+    background-color: #0c1022;
+    border-radius: 50px 5px;
+    inset: 5px;
+    padding: 50px 40px;
+    z-index: 10;
+    color: #00ccff;
   }
+  
 
 /* ======================================= ADMIN UPDATE =======================================*/
 
@@ -583,6 +561,11 @@ footer {
   border: none;
 }
 
+
+/* ======================================= ADMIN ADD =======================================*/
+#admin_add_container {
+  height: 650px;
+}
 
 /* ======================================= ADMIN DELETE =======================================*/
 
