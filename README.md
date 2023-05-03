@@ -1,11 +1,11 @@
-# Sky Get Into Tech Course
 
-## Final Project
+# Forty Winks
+### Sky Get Into Tech Course - Final Project
 
 April 2023
 
 ***
-hello from mirfat!!
+
 ### 🚺 Team
 
 - Pam
@@ -17,11 +17,24 @@ hello from mirfat!!
 
 ### 💻 Project info
 
-Add info about the project
+Forty Winks is an app that caters to people who have trouble sleeping providing a calming and immersive audio/visual 
+experience to promote relaxation to help our users sleep.
+
+The main goal was to build a full stack application in less than 3 weeks applying all the skills acquired during the 
+15-week course including showcasing the final product.
+
 
 ***
 
 ### 💾 Tech stack and applied practices
-Add tech used and implemented practices (agile, sprints, retrospectives, etc.)
+- Agile: 4 sprints, backlog, scrum master, retrospective and kandan board.
+- Pair programming.
+- Miro, Jitsi, Slack for communication and organisation.
+- Python 3,11, PyCharm, MySQL, Git, GitHub, VSCode.
+- HTML, CSS, Bootstrap, Jinja for front end.
+- Python, MySQL and Flask for back end.
 
 ***
+
+### 💾 Video Demonstration
+
