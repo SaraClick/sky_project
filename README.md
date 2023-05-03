@@ -1,8 +1,10 @@
 
-# Forty Winks
+![alt text](application/static/media/logo/readme_header.png)
+
+
 ### Sky Get Into Tech Course - Final Project
 
-April 2023
+📆Date of completion: April 2023
 
 ***
 
@@ -36,5 +38,7 @@ The main goal was to build a full stack application in less than 3 weeks applyin
 
 ***
 
-### 💾 Video Demonstration
+### 🎥 Video Demonstration
+
+TO BE ADDED
 
