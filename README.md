@@ -12,7 +12,6 @@
 ### 📋 Contents
 
 - [🐏 Forty Winks](#-forty-winks)
-- [� Contents](#-contents)
 - [💻 Project info](#-project-info)
 - [🔄 Our Process](#-our-process)
 - [💡 Main Features](#-main-features)
@@ -50,10 +49,11 @@ The Entity-Relationship (EER) diagram represents the database structure and enti
 ***
 
 ### 💡 Main Features
+
 - MVP: Landing + Media + Tips + Contact page
 - Extras: After completing the MVP, we focused on developing extra features, including:
   - Email: When a user completes the contact form, we implemented the functionality for our website to send an email to Forty Winks Gmail.
-  - Admin section: This is a hidden website accessible only to admins of Forty Winks. Admins can log in and manage the database behind the Media functionality. In this section, admins can perform full CRUD functionality—they can Add, View, Update and Delete media items.
+  - Admin section: This is a hidden section accessible only to admins of Forty Winks. Admins can log in and manage the database behind the Media functionality. In this section, admins can perform full CRUD functionality—they can Add, View, Update and Delete media items.
 - Formatting: We utilised Bootstrap for various components such as carousels, featurettes, accordions, forms and navigation bar. Additionally, Google Fonts and icon buttons were incorporated.
 - Responsive website: The website is designed to be responsive and can be accessed and used on various devices, including computers, tablets, and mobiles.
 
@@ -123,6 +123,7 @@ Once the app is up and running, you can access it in your web browser. The main 
 - Media section: Offers a collection of relaxing media content, including ambient audio-visual sounds.
 - Tips section: Provides helpful tips and techniques for improving sleep quality.
 - Contact page: Allows users to get in touch with the Forty Winks team.
+- 🔒 Secret Admin section: Accessible only to admins, it allows them to manage the Media functionality of the database. Admins can perform full CRUD operations—they can Add, View, Update and Delete media items.
 
 ***
 
