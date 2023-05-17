@@ -102,12 +102,11 @@ pip install -r requirements.txt
 
 4. Set up the database:
 
-Create a MySQL database named FortyWinks.
-Import the SQL files located at application/mysql_scripts into the FortyWinks database.
+Create a MySQL database named FortyWinks by executing the SQL files located at application/mysql_scripts into the FortyWinks database; note that the files have been named by order of execution.
 
 5. Start the Flask application:
 
-flask run
+Open the Python file app.py and flask run
 
 6. Go to http://localhost:5000 in your web browser to view the website.
 
