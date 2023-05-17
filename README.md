@@ -12,7 +12,7 @@
 ### 📋 Contents
 
 - [🐏 Forty Winks](#-forty-winks)
-- [💻 Project info](#-project-info)
+- [💻 Project Info](#-project-info)
 - [🔄 Our Process](#-our-process)
 - [💡 Main Features](#-main-features)
 - [🛠️ Tech stack and applied practices](#️-tech-stack-and-applied-practices)
@@ -44,7 +44,7 @@ We successfully implemented the MVP, along with additional extensions, including
 
 ![](application/static/media/diagram/eer_diagram.jpg "EER diagram")
 
-The Entity-Relationship (EER) diagram represents the database structure and entity relationships, facilitating the implementation of essential functionalities for Forty Winks.
+The Enhanced Entity-Relationship (EER) diagram represents the database structure and entity relationships, facilitating the implementation of essential functionalities for Forty Winks.
 
 ***
 
@@ -55,7 +55,7 @@ The Entity-Relationship (EER) diagram represents the database structure and enti
   - Email: When a user completes the contact form, we implemented the functionality for our website to send an email to Forty Winks Gmail.
   - Admin section: This is a hidden section accessible only to admins of Forty Winks. Admins can log in and manage the database behind the Media functionality. In this section, admins can perform full CRUD functionality—they can Add, View, Update and Delete media items.
 - Formatting: We utilised Bootstrap for various components such as carousels, featurettes, accordions, forms and navigation bar. Additionally, Google Fonts and icon buttons were incorporated.
-- Responsive website: The website is designed to be responsive and can be accessed and used on various devices, including computers, tablets, and mobiles.
+- Responsive website: The website is designed to be responsive and can be accessed and used on various devices, including computers, tablets and mobiles.
 
 ***
 
@@ -74,6 +74,7 @@ The Entity-Relationship (EER) diagram represents the database structure and enti
 Note: The installation guide assumes basic knowledge of working with Python, MySQL and Flask. If you encounter any issues, refer to the official documentation or seek assistance from the development community.
 
 📋 Prerequisites
+
 Before you begin the installation process, please ensure that you have the following prerequisites installed:
 
 -Python: Install Python 3.11 or higher on your machine. You can download the latest version of Python from the official website (https://www.python.org/downloads/).
