@@ -16,7 +16,7 @@
 - [🔄 Our Process](#-our-process)
 - [💡 Main Features](#-main-features)
 - [🛠️ Tech stack and applied practices](#️-tech-stack-and-applied-practices)
-- [🐏 Forty Winks Installation Guide](#-forty-winks-installation-guide)
+- [📦 Installation Guide](#-installation-guide)
 - [🌐 Inside the app](#-inside-the-app)
 - [🎥 Video Demonstration](#-video-demonstration)
 
@@ -69,9 +69,9 @@ The Entity-Relationship (EER) diagram represents the database structure and enti
 
 ***
 
-### 🐏 Forty Winks Installation Guide
+### 📦 Installation Guide
 
-Note: The installation guide assumes basic knowledge of working with Python, MySQL and Flask. If you encounter any issues during the installation process, refer to the official documentation for the relevant software or seek assistance from the development community.
+Note: The installation guide assumes basic knowledge of working with Python, MySQL and Flask. If you encounter any issues, refer to the official documentation or seek assistance from the development community.
 
 📋 Prerequisites
 Before you begin the installation process, please ensure that you have the following prerequisites installed:
