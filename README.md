@@ -135,7 +135,7 @@ Once the app is up and running, you can access it in your web browser. The main 
 
 🎉 Enjoy Forty Winks!
 
-We hope that Forty Winks provides a soothing experience and helps you achieve a better night's sleep. Thank you for your interest and support in our project. Sweet dreams! 😴
+Thank you for choosing Forty Winks! We hope that Forty Winks provides a soothing experience and helps you achieve a better night's sleep. Sweet dreams! 😴
 
 
 ![alt text](application/static/media/logo/readme_header.png)
